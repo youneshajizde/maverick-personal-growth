@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${poppins.className} antialiased bg-foreground`}>
         <main className="h-dvh p-5 flex gap-3">
-          <div className="h-full hidden sm:block w-[30%]">
+          <div className="h-full hidden sm:block w-[15%]">
             <Sidebar />
           </div>
 

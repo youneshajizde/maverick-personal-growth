@@ -71,9 +71,9 @@ const Sidebar = () => {
         </div>
 
         <div className="f-align gap-1.5 mt-6">
-          <div className="size-10 lg:size-12 rounded-full relative">
+          <div className="size-10 lg:size-10 rounded-full relative">
             <Image
-              src={"/images/avatar.jpg"}
+              src={"/images/avatar1.png"}
               alt="avatar"
               fill
               className="absolute object-cover rounded-full"
