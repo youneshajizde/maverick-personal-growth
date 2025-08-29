@@ -5,22 +5,49 @@
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  --color-primary: #1e3a8a; /* Deep Indigo Blue */
+  --color-secondary: #2563eb; /* Bright Sky Blue */
+  --color-accent: #facc15; /* Golden Yellow */
+  --color-light: #f9fafb; /* Soft Gray-White */
+  --color-dark: #111827; /* Rich Charcoal */
+  --color-text-light: #1f2937; /* Cool Gray */
+  --color-text-dark: #f9fafb; /* Off White */
+  --color-progress: #22c55e; /* Vibrant Green */
+  --color-foreground: #f7f7f7;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.epic-shadow {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+@utility f-align {
+  @apply flex items-center;
+}
+
+@utility f-center {
+  @apply flex items-center justify-center;
+}
+
+/* 
+      {/* <div className="block absolute bottom-5 left-5 md:hidden">
+        <Image
+          alt="maverick"
+          src={"/images/mav-s.png"}
+          width={90}
+          height={90}
+        />
+        <span className="absolute bottom-0 left-12 bg-gradient-to-bl from-accent to-orange-400 text-white size-10 font-bold f-align justify-center rounded-full">
+          P
+        </span>
+      </div> */
+
+
+        /* <section className="md:hidden bg-white rounded-xl py-1.5 px-3 f-align justify-between ">
+        <Image src={"/images/logo-1.png"} alt="logo" width={50} height={50} />
+        <MenuIcon className="size-6" />
+      </section> */
