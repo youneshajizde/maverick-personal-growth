@@ -7,7 +7,7 @@ export default function DashboardLayout({
 }>) {
   return (
     <main className="h-dvh p-5 flex gap-3">
-      <div className="h-full hidden lg:block w-[15%]">
+      <div className="h-full hidden sm:block w-[10%] lg:w-[13%]">
         <Sidebar />
       </div>
 
