@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Sidebar from "@/shared/components/Sidebar";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -21,13 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.className} antialiased bg-foreground`}>
-        <main className="h-dvh p-5 flex gap-3">
-          <div className="h-full hidden sm:block w-[15%]">
-            <Sidebar />
-          </div>
-
-          {children}
-        </main>
+      {children}
       </body>
     </html>
   );
