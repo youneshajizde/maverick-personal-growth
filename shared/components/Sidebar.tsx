@@ -1,27 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
-import {
-  ChartBarBigIcon,
-  ChevronDownIcon,
-  DonutIcon,
-  DumbbellIcon,
-  FileWarningIcon,
-  GraduationCapIcon,
-  HouseIcon,
-  MessageSquareMoreIcon,
-  ShoppingBagIcon,
-} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { sidebarItems } from "../constants/sidebar.constants";
+import { sidebarSections } from "../constants/sidebar.constants";
+import { ChevronDownIcon } from "lucide-react";
+
+
 const Sidebar = () => {
   const pathname = usePathname();
-
   const currentTab = pathname.split("/").filter(Boolean).pop();
-
-  console.log("current tab : ", currentTab);
 
   return (
     <section className="flex flex-col h-full justify-between gap-3">
@@ -38,44 +26,30 @@ const Sidebar = () => {
               Maverick
             </p>
           </div>
-          <p className="text-black/30 text-xs mt-6">Menu</p>
 
-          <ul className="flex flex-col items-center lg:items-stretch w-full space-y-1.5 mt-3">
-            {sidebarItems.map((item, index) => (
-              <Link
-                key={index}
-                href={item.url}
-                className={`${
-                  currentTab === item.value
-                    ? "bg-secondary text-white"
-                    : "text-black hover:text-secondary"
-                } f-align gap-1.5 transform transition-all rounded-lg p-1.5`}
-              >
-                <item.icon className="size-6 lg:size-4.5" />
-                <p className="text-sm hidden lg:block">{item.title}</p>
-              </Link>
-            ))}
-          </ul>
+          {sidebarSections.map((section, _) => (
+            <>
+              <p className="text-black/30 text-xs mt-6">{section.label}</p>
+              <ul className="flex flex-col items-center lg:items-stretch w-full space-y-1.5 mt-3">
+                {section.items.map((item, index) => (
+                  <Link
+                    key={index}
+                    href={item.url}
+                    className={`${
+                      currentTab === item.value
+                        ? "bg-secondary text-white"
+                        : "text-black hover:text-secondary"
+                    } f-align gap-1.5 transform transition-all rounded-lg p-1.5`}
+                  >
+                    <item.icon className="size-6 lg:size-4.5" />
+                    <p className="text-sm hidden lg:block">{item.title}</p>
 
-          <p className="text-black/30 text-xs mt-6">Others</p>
-
-          <ul className="flex flex-col items-center lg:items-stretch w-full space-y-1.5 mt-3">
-            <li className="f-align gap-1.5 hover:text-white transform transition-all hover:bg-secondary rounded-lg p-1.5">
-              <FileWarningIcon className="size-6 lg:size-4.5" />
-              <p className="text-sm hidden lg:block">Info</p>
-            </li>
-            <li className="f-align gap-1.5 hover:text-white transform transition-all hover:bg-secondary rounded-lg p-1.5">
-              <MessageSquareMoreIcon className="size-6 lg:size-4.5" />
-              <p className="text-sm hidden lg:block">Grps</p>
-            </li>
-            <li className="flex justify-between items-center p-1.5">
-              <div className="f-align gap-1.5">
-                <ChartBarBigIcon className="size-6 lg:size-4.5" />
-                <p className="text-sm hidden lg:block">Status</p>
-              </div>
-              <ChevronDownIcon className="hidden xl:block lg:size-4.5" />
-            </li>
-          </ul>
+                    {item.hasChevron && <ChevronDownIcon className="hidden xl:block lg:size-4.5 ml-auto" />}
+                  </Link>
+                ))}
+              </ul>
+            </>
+          ))}
         </div>
 
         <div className="f-align gap-1.5 justify-center lg:justify-start mt-6">
