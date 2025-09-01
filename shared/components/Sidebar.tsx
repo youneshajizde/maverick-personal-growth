@@ -4,8 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { sidebarSections } from "../constants/sidebar.constants";
+import React from "react";
+import { SidebarItem } from "../types/sidebar.types";
 import { ChevronDownIcon } from "lucide-react";
-
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -27,28 +28,17 @@ const Sidebar = () => {
             </p>
           </div>
 
-          {sidebarSections.map((section, _) => (
-            <>
+          {sidebarSections.map((section, index) => (
+            <React.Fragment key={index}>
               <p className="text-black/30 text-xs mt-6">{section.label}</p>
               <ul className="flex flex-col items-center lg:items-stretch w-full space-y-1.5 mt-3">
-                {section.items.map((item, index) => (
-                  <Link
-                    key={index}
-                    href={item.url}
-                    className={`${
-                      currentTab === item.value
-                        ? "bg-secondary text-white"
-                        : "text-black hover:text-secondary"
-                    } f-align gap-1.5 transform transition-all rounded-lg p-1.5`}
-                  >
-                    <item.icon className="size-6 lg:size-4.5" />
-                    <p className="text-sm hidden lg:block">{item.title}</p>
-
-                    {item.hasChevron && <ChevronDownIcon className="hidden xl:block lg:size-4.5 ml-auto" />}
-                  </Link>
+                {section.items.map((item) => (
+                  <li key={item.value}>
+                    {renderSidebarTabs(item, currentTab!)}
+                  </li>
                 ))}
               </ul>
-            </>
+            </React.Fragment>
           ))}
         </div>
 
@@ -85,3 +75,52 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+
+const renderSidebarTabs = (item: SidebarItem, currentTab: string) => {
+  switch (item.type) {
+    case "Link":
+      return (
+        <Link
+          href={item.url!}
+          className={`${
+            currentTab === item.value
+              ? "bg-secondary text-white"
+              : "text-black hover:text-secondary"
+          } f-align gap-1.5 transition-all rounded-lg p-1.5`}
+        >
+          <item.icon className="size-6 lg:size-4.5" />
+          <p className="text-sm hidden lg:block">{item.title}</p>
+        </Link>
+      );
+
+    case "Action":
+      return (
+        <button className="f-align gap-1.5 transition-all rounded-lg p-1.5 text-black hover:text-secondary">
+          <item.icon className="size-6 lg:size-4.5" />
+          <p className="text-sm hidden lg:block"> {item.title}</p>
+        </button>
+      );
+
+    case "Dropdown":
+      return (
+        <button className="f-align w-full justify-between gap-1.5 transition-all rounded-lg p-1.5 text-black hover:text-secondary group">
+          <span className="f-align gap-1">
+            <item.icon className="size-6 lg:size-4.5" />
+            <p className="text-sm hidden lg:block ">{item.title}</p>
+          </span>
+          <ChevronDownIcon className="text-black size-6 lg:size-4.5 group-hover:text-secondary" />
+        </button>
+      );
+
+    case "Modal":
+      return (
+        <button className="f-align gap-1.5 transition-all rounded-lg p-1.5 text-black hover:text-secondary">
+          <item.icon className="size-6 lg:size-4.5" />
+          <p className="text-sm hidden lg:block"> {item.title}</p>
+        </button>
+      );
+
+    default:
+      return null;
+  }
+};
