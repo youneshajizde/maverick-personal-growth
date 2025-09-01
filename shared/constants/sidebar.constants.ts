@@ -1,47 +1,15 @@
 import {
   ChartBarBigIcon,
-  ChevronDownIcon,
   DonutIcon,
   DumbbellIcon,
   FileWarningIcon,
   GraduationCapIcon,
   HouseIcon,
+  ListIcon,
   MessageSquareMoreIcon,
   ShoppingBagIcon,
+  StoreIcon,
 } from "lucide-react";
-
-export const sidebarItems = [
-  {
-    title: "home",
-    icon: HouseIcon,
-    url: "/dashboard/home",
-    value: "home",
-  },
-  {
-    title: "Exercise",
-    icon: DumbbellIcon,
-    url: "/dashboard/exercise",
-    value: "exercise",
-  },
-  {
-    title: "Diet",
-    icon: DonutIcon,
-    url: "/dashboard/diet",
-    value: "diet",
-  },
-  {
-    title: "Study",
-    icon: GraduationCapIcon,
-    url: "/dashboard/study",
-    value: "study",
-  },
-  {
-    title: "Let's shop",
-    icon: ShoppingBagIcon,
-    url: "/dashboard/shop",
-    value: "shop",
-  },
-];
 
 export const sidebarSections = [
   {
@@ -76,11 +44,27 @@ export const sidebarSections = [
         icon: GraduationCapIcon,
       },
       {
-        type:"Link" ,
+        type: "Dropdown",
         title: "Shop",
         url: "/dashboard/shop",
         value: "shop",
         icon: ShoppingBagIcon,
+        items: [
+          {
+            type: "Link",
+            title: "Wishlist",
+            url: "/dashboard/shop/wishlist",
+            value: "wishlist",
+            icon: ListIcon,
+          },
+          {
+            type: "Link",
+            title: "Amazon",
+            url: "/dashboard/shop/products",
+            value: "products",
+            icon: StoreIcon,
+          },
+        ],
       },
     ],
   },
@@ -89,22 +73,21 @@ export const sidebarSections = [
     label: "Others",
     items: [
       {
-        type:"Link" ,
+        type: "Modal",
         title: "Info",
         url: "/dashboard/info",
         value: "info",
         icon: FileWarningIcon,
       },
       {
-        type:"Link" ,
+        type: "Link",
         title: "Grps",
         url: "/dashboard/grps",
         value: "grps",
         icon: MessageSquareMoreIcon,
       },
       {
-        type:"hover" ,
-        hasChevron : true,
+        type: "Link",
         title: "Status",
         url: "/dashboard/status",
         value: "status",
