@@ -1,9 +1,9 @@
 import React from "react";
-import { SidebarItemS } from "../types/sidebar.types";
+import { SidebarItems } from "../types/sidebar.types";
 import Link from "next/link";
 
 interface LinkItemProps {
-  item: Extract<SidebarItemS, { type: "Link" }>;
+  item: Extract<SidebarItems, { type: "Link" }>;
   currentTab: string;
 }
 

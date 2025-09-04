@@ -1,13 +1,6 @@
 import { LucideIcon } from "lucide-react";
 
-export type SidebarItem = {
-  type: "Link" | "Modal" | "Action" | "Dropdown";
-  title: string;
-  icon: LucideIcon;
-  url?: string;
-  value?: string;
-  action?: () => void;
-};
+
 
 interface BaseSidebarItem {
   title: string;
@@ -15,7 +8,7 @@ interface BaseSidebarItem {
   value?: string;
 }
 
-export type SidebarItemS =
+export type SidebarItems =
   | (BaseSidebarItem & {
       type: "Link";
       url: string;
@@ -32,6 +25,6 @@ export type SidebarItemS =
   | (BaseSidebarItem & {
       type: "Dropdown";
       url?: string;
-      items?: SidebarItem[];
+      items?: SidebarItems[];
       value: string;
     });
