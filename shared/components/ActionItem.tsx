@@ -1,8 +1,8 @@
 import React from "react";
-import { SidebarItemS } from "../types/sidebar.types";
+import { SidebarItems } from "../types/sidebar.types";
 
 interface ActionItemProp {
-  item: Extract<SidebarItemS, { type: "Action" }>;
+  item: Extract<SidebarItems, { type: "Action" }>;
 }
 
 const ActionItem = ({ item }: ActionItemProp) => {
