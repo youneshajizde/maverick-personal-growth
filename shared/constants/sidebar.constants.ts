@@ -10,8 +10,9 @@ import {
   ShoppingBagIcon,
   StoreIcon,
 } from "lucide-react";
+import { SidebarSection } from "../types/sidebar.types";
 
-export const sidebarSections = [
+export const sidebarSections: SidebarSection[] = [
   {
     label: "Menu",
     items: [
@@ -64,20 +65,20 @@ export const sidebarSections = [
             value: "products",
             icon: StoreIcon,
           },
+          
         ],
       },
     ],
   },
-
   {
     label: "Others",
     items: [
       {
         type: "Modal",
         title: "Info",
-        url: "/dashboard/info",
         value: "info",
         icon: FileWarningIcon,
+        action: () => console.log("Open Info Modal"),
       },
       {
         type: "Link",

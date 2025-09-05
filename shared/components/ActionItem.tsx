@@ -1,18 +1,15 @@
 import React from "react";
-import { SidebarItems } from "../types/sidebar.types";
+import { ItemContent } from "./ItemContent";
+import { SidebarComponentProps } from "./Sidebar";
 
-interface ActionItemProp {
-  item: Extract<SidebarItems, { type: "Action" }>;
-}
-
-const ActionItem = ({ item }: ActionItemProp) => {
+const ActionItem: React.FC<SidebarComponentProps> = ({ item }) => {
+  if (item.type !== "Action") return null;
   return (
     <button
       onClick={item.action}
       className="f-align gap-1.5 transition-all rounded-lg p-1.5 text-black hover:text-secondary"
     >
-      <item.icon className="size-6 lg:size-4.5" />
-      <p className="text-sm hidden lg:block">{item.title}</p>
+      <ItemContent item={item} />
     </button>
   );
 };

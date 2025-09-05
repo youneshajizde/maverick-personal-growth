@@ -1,42 +1,46 @@
+"use client"; // Required for useState
+
 import React, { useState } from "react";
-import { SidebarItems } from "../types/sidebar.types";
-import { ChevronDownIcon } from "lucide-react";
-import { renderSidebarTabs } from "./Sidebar";
+import { SidebarComponentProps, renderSidebarTabs } from "./Sidebar";
+import { ItemContent } from "./ItemContent";
+import { ChevronDown, ChevronRight } from "lucide-react";
 
-interface DropdownItemProp {
-  item: Extract<SidebarItems, { type: "Dropdown" }>;
-  currentTab: string;
-}
+const DropdownItem: React.FC<SidebarComponentProps> = ({ item, currentTab }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  if (item.type !== "Dropdown") return null;
 
-const DropdownItem = ({ item, currentTab }: DropdownItemProp) => {
-  const [isOpen, setOpen] = useState(false);
+  const toggleDropdown = () => setIsOpen((prev) => !prev);
+
   return (
-    <div className="relative">
+    <div className="flex flex-col gap-1.5 transition-all rounded-lg p-1.5 relative">
       <button
-        className="f-align w-full justify-between gap-1.5 transition-all rounded-lg p-1.5 text-black hover:text-secondary group"
-        onClick={() => setOpen(!isOpen)}
+        onClick={toggleDropdown}
+        className="f-align flex-col lg:flex-row items-center gap-1.5 w-full text-black hover:text-secondary"
       >
-        <span className="f-align gap-1">
-          <item.icon className="size-6 lg:size-4.5" />
-          <p className="text-sm hidden lg:block">{item.title}</p>
-        </span>
-        <ChevronDownIcon 
-          className={`${
-            isOpen ? "rotate-180" : "rotate-0"
-          } text-black size-6 lg:size-4.5 group-hover:text-secondary transition-transform duration-300 ease-in-out`}
-        />
+        <ItemContent item={item} />
+        {item.items && (
+          <span className="hidden lg:block ml-auto">
+            {isOpen ? (
+              <ChevronDown className="size-4" />
+            ) : (
+              <ChevronRight className="size-4" />
+            )}
+          </span>
+        )}
       </button>
-      <ul 
-        className={`${
-          isOpen ? "opacity-100 max-h-96" : "opacity-0 max-h-0"
-        } left-10 mt-2 w-full transition-all duration-300 ease-in-out rounded-lg p-2 space-y-2 overflow-hidden`}
-      >
-        {item.items?.map((subItem) => (
-          <li key={subItem.value}>
-            {renderSidebarTabs(subItem, currentTab)}
-          </li>
-        ))}
-      </ul>
+      {item.items && (
+        <ul
+          className={`w-full items-stretch <lg:absolute <lg:left-24 <lg:bg-white <lg:rounded-r-xl lg:ml-1.5 lg:mt-1.5 space-y-1 overflow-hidden transition-all duration-300 ease-in-out lg:static ${
+            isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          }`}
+        >
+          {item.items.map((subItem) => (
+            <li key={subItem.value}>
+              {renderSidebarTabs(subItem, currentTab)}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

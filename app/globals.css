@@ -33,21 +33,10 @@ body {
   @apply flex items-center justify-center;
 }
 
-/* 
-      {/* <div className="block absolute bottom-5 left-5 md:hidden">
-        <Image
-          alt="maverick"
-          src={"/images/mav-s.png"}
-          width={90}
-          height={90}
-        />
-        <span className="absolute bottom-0 left-12 bg-gradient-to-bl from-accent to-orange-400 text-white size-10 font-bold f-align justify-center rounded-full">
-          P
-        </span>
-      </div> */
-
-
-        /* <section className="md:hidden bg-white rounded-xl py-1.5 px-3 f-align justify-between ">
-        <Image src={"/images/logo-1.png"} alt="logo" width={50} height={50} />
-        <MenuIcon className="size-6" />
-      </section> */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; /* Firefox */
+}

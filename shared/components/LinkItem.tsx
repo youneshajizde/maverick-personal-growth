@@ -1,24 +1,18 @@
 import React from "react";
-import { SidebarItems } from "../types/sidebar.types";
 import Link from "next/link";
+import { ItemContent } from "./ItemContent";
+import { SidebarComponentProps } from "./Sidebar";
 
-interface LinkItemProps {
-  item: Extract<SidebarItems, { type: "Link" }>;
-  currentTab: string;
-}
-
-const LinkItem = ({ item, currentTab }: LinkItemProps) => {
+const LinkItem: React.FC<SidebarComponentProps> = ({ item, currentTab }) => {
+  if (item.type !== "Link") return null;
   return (
     <Link
       href={item.url}
-      className={`${
-        currentTab === item.value
-          ? "bg-secondary text-white"
-          : "text-black hover:text-secondary"
-      } f-align gap-1.5 transition-all rounded-lg p-1.5`}
+      className={`f-align gap-1.5 transition-all rounded-lg p-1.5 ${
+        currentTab === item.value ? "bg-secondary text-white" : "text-black hover:text-secondary"
+      }`}
     >
-      <item.icon className="size-6 lg:size-4.5" />
-      <p className="text-sm hidden lg:block">{item.title}</p>
+      <ItemContent item={item} />
     </Link>
   );
 };
