@@ -1,32 +1,32 @@
 import { LucideIcon } from "lucide-react";
 
-interface BaseSidebarItem {
+interface BaseNavigationItem {
   title: string;
   icon: LucideIcon;
   value: string;
 }
 
-export type SidebarItems =
-  | (BaseSidebarItem & {
+export type NavigationItems =
+  | (BaseNavigationItem & {
       type: "Link";
       url: string;
     })
-  | (BaseSidebarItem & {
+  | (BaseNavigationItem & {
       type: "Action";
       action: () => void;
     })
-  | (BaseSidebarItem & {
+  | (BaseNavigationItem & {
       type: "Modal";
       action: () => void;
       url?: string; 
     })
-  | (BaseSidebarItem & {
+  | (BaseNavigationItem & {
       type: "Dropdown";
       url?: string;
-      items?: SidebarItems[];
+      items?: NavigationItems[];
     });
 
-export interface SidebarSection {
+export interface NavigationSection {
   label: string;
-  items: SidebarItems[];
+  items: NavigationItems[];
 }

@@ -9,7 +9,9 @@ const LinkItem: React.FC<SidebarComponentProps> = ({ item, currentTab }) => {
     <Link
       href={item.url}
       className={`f-align gap-1.5 transition-all rounded-lg p-1.5 ${
-        currentTab === item.value ? "bg-secondary text-white" : "text-black hover:text-secondary"
+        currentTab === item.value
+          ? "bg-secondary text-white"
+          : "text-black hover:text-secondary"
       }`}
     >
       <ItemContent item={item} />

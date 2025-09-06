@@ -2,21 +2,22 @@
 
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { sidebarSections } from "../constants/sidebar.constants";
+import { navigationSections } from "../constants/navigation.constants";
 import React from "react";
-import { SidebarItems } from "../types/sidebar.types";
+import { NavigationItems } from "../types/navigation.types";
 import LinkItem from "./LinkItem";
 import ActionItem from "./ActionItem";
 import DropdownItem from "./DropdownItem";
 import ModalItem from "./ModalItem";
 
 export interface SidebarComponentProps {
-  item: SidebarItems;
+  item: NavigationItems;
   currentTab: string;
+  showText?: boolean;
 }
 
 const itemComponents: Record<
-  SidebarItems["type"],
+  NavigationItems["type"],
   React.ComponentType<SidebarComponentProps>
 > = {
   Link: LinkItem,
@@ -25,7 +26,10 @@ const itemComponents: Record<
   Modal: ModalItem,
 };
 
-export const renderSidebarTabs = (item: SidebarItems, currentTab: string) => {
+export const renderSidebarTabs = (
+  item: NavigationItems,
+  currentTab: string
+) => {
   const Component = itemComponents[item.type];
   if (!Component) {
     console.warn(`Unknown sidebar item type: ${item.type}`);
@@ -40,7 +44,7 @@ const Sidebar = () => {
 
   return (
     <section className="flex flex-col h-full justify-between gap-3">
-<div className="1st-section bg-white flex-1 rounded-xl p-3 flex flex-col justify-between overflow-y-auto scrollbar-hide">
+      <div className="1st-section bg-white flex-1 rounded-xl p-3 flex flex-col justify-between overflow-y-auto scrollbar-hide">
         <div className="items-center lg:items-start flex flex-col flex-shrink-0">
           <div className="f-align gap-1">
             <Image src="/images/logo-1.png" alt="logo" width={45} height={45} />
@@ -49,7 +53,7 @@ const Sidebar = () => {
             </p>
           </div>
 
-          {sidebarSections.map((section, index) => (
+          {navigationSections.map((section, index) => (
             <React.Fragment key={index}>
               <p className="text-black/30 text-xs mt-3">{section.label}</p>
               <ul className="flex flex-col items-center lg:items-stretch w-full space-y-1.5 mt-3">
