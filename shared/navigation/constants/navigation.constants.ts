@@ -10,9 +10,9 @@ import {
   ShoppingBagIcon,
   StoreIcon,
 } from "lucide-react";
-import { SidebarSection } from "../types/sidebar.types";
+import { NavigationSection } from "../types/navigation.types";
 
-export const sidebarSections: SidebarSection[] = [
+export const navigationSections: NavigationSection[] = [
   {
     label: "Menu",
     items: [
@@ -65,7 +65,6 @@ export const sidebarSections: SidebarSection[] = [
             value: "products",
             icon: StoreIcon,
           },
-          
         ],
       },
     ],
