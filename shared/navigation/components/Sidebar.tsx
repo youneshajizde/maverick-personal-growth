@@ -70,7 +70,7 @@ const Sidebar = () => {
         <div className="avatar-div f-align gap-1.5 justify-center lg:justify-start mt-6 flex-shrink-0">
           <div className="size-10 lg:size-10 rounded-full relative">
             <Image
-              src="/images/avatar1.png"
+              src="/images/avatar2.jpg"
               alt="avatar"
               fill
               className="absolute object-cover rounded-full"
