@@ -1,5 +1,5 @@
 export default function Home() {
   return (
-   <div>sdfs</div>
+   <section className="bg-red-300"></section>
   );
 }
