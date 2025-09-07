@@ -8,6 +8,7 @@ import {
   ListIcon,
   MessageSquareMoreIcon,
   ShoppingBagIcon,
+  SpeechIcon,
   StoreIcon,
 } from "lucide-react";
 import { NavigationSection } from "../types/navigation.types";
@@ -19,7 +20,7 @@ export const navigationSections: NavigationSection[] = [
       {
         type: "Link",
         title: "Home",
-        url: "/dashboard/home",
+        url: "/dashboard",
         value: "home",
         icon: HouseIcon,
       },
@@ -44,6 +45,13 @@ export const navigationSections: NavigationSection[] = [
         value: "study",
         icon: GraduationCapIcon,
       },
+            {
+        type: "Link",
+        title: "Coaches",
+        url: "/dashboard/Coaches",
+        value: "Coaches",
+        icon: SpeechIcon,
+      },
       {
         type: "Dropdown",
         title: "Shop",
@@ -65,6 +73,7 @@ export const navigationSections: NavigationSection[] = [
             value: "products",
             icon: StoreIcon,
           },
+          
         ],
       },
     ],

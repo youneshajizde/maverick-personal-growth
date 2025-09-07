@@ -29,7 +29,7 @@ const Navbar = () => {
       <div
         className={`${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
-        } flex flex-col justify-between transform transition-transform ease-in-out duration-400 fixed top-0 left-0 bg-white h-full w-64 z-50 p-5`}
+        } flex flex-col justify-between overflow-y-auto scrollbar-hide transform transition-transform ease-in-out duration-400 fixed top-0 left-0 bg-white h-full w-64 z-50 p-5`}
       >
         <div className="items-start flex flex-col flex-shrink-0">
           <div className="f-align gap-1">
