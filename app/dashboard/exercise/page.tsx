@@ -24,7 +24,7 @@ const ExercisePage = () => {
           <div className="f-align gap-1.5 justify-center lg:justify-start flex-shrink-0">
             <div className="size-10 lg:size-10 rounded-full relative">
               <Image
-                src="/images/avatar1.png"
+                src="/images/avatar2.jpg"
                 alt="avatar"
                 fill
                 className="absolute object-cover rounded-full"
@@ -116,7 +116,7 @@ const ExercisePage = () => {
             <p className="font-medium text-white">Workout history</p>
           </div>
         </div>
-        <div className="col-span-2 h-80 bg-white p-3"></div>
+        <div className="col-span-2 bg-white p-3"></div>
       </div>
     </div>
   );
