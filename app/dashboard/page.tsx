@@ -11,8 +11,6 @@ const Dashboard = () => {
         </h1>
         <Clock />
       </nav>
-
-      
     </section>
   );
 };
