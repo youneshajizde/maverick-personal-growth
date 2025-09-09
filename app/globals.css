@@ -6,10 +6,10 @@
 }
 
 @theme {
-  --color-primary: #9112BC; /* Deep Indigo Blue */
-  --color-secondary: #8F87F1; /* Bright Sky Blue */
-  --color-accent: #C68EFD; /* Golden Yellow */
-  --color-light: #f9fafb; /* Soft Gray-White */
+  --color-primary: #064232; /* Deep Indigo Blue */
+  --color-secondary: #568F87; /* Bright Sky Blue */
+  --color-accent: #F5BABB; /* Golden Yellow */
+  --color-light: #E1FFEE; /* Soft Gray-White */
   --color-dark: #111827; /* Rich Charcoal */
   --color-text-light: #1f2937; /* Cool Gray */
   --color-text-dark: #f9fafb; /* Off White */
