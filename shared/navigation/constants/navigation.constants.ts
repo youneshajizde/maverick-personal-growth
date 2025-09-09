@@ -48,7 +48,7 @@ export const navigationSections: NavigationSection[] = [
             {
         type: "Link",
         title: "Coaches",
-        url: "/dashboard/Coaches",
+        url: "/dashboard/coaches",
         value: "Coaches",
         icon: SpeechIcon,
       },
