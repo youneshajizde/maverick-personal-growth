@@ -44,7 +44,7 @@ const Sidebar = () => {
 
   return (
     <section className="flex flex-col h-full justify-between gap-3">
-      <div className="1st-section bg-white flex-1 rounded-xl p-3 flex flex-col justify-between overflow-y-auto scrollbar-hide">
+      <div className="1st-section bg-white flex-1 rounded-4xl p-3 flex flex-col justify-between overflow-y-auto scrollbar-hide">
         <div className="items-center lg:items-start flex flex-col flex-shrink-0">
           <div className="f-align gap-1">
             <Image src="/images/logo-1.png" alt="logo" width={45} height={45} />
@@ -83,7 +83,7 @@ const Sidebar = () => {
         </div>
       </div>
 
-      <div className="2nd-section f-align justify-center lg:justify-start w-full bg-transparent md:bg-gradient-to-b from-secondary to-secondary/80 rounded-xl">
+      <div className="2nd-section f-align justify-center lg:justify-start w-full bg-transparent md:bg-gradient-to-b from-secondary to-secondary/80 rounded-4xl">
         <Image alt="maverick" src="/images/mav-s.png" width={60} height={60} />
         <div className="text-white hidden lg:block">
           <p className="lg:text-lg xl:text-xl font-semibold">LEVEL.</p>

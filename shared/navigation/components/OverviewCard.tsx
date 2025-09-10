@@ -18,7 +18,7 @@ const OverviewCard = ({
 }: OverviewCardProps) => {
   return (
     <div
-      className={cn("col-span-1 text-white flex flex-col justify-between h-auto rounded-xl p-6 space-y-3 bg-secondary" , className)}
+      className={cn("col-span-1 text-white flex flex-col justify-between h-auto rounded-4xl p-6 space-y-3 bg-secondary" , className)}
     >
       <div className="flex justify-between">
         <p className="font-semibold text-2xl">{title}</p>

@@ -12,7 +12,7 @@ import {
 import WeightChart from "@/features/exercise/components/organisms/WeightChart";
 import WorkoutTracker from "@/features/exercise/components/organisms/WorkoutTracker";
 import WorkoutHistory from "@/features/exercise/components/organisms/WorkoutHistory";
-import OverviewCard from "@/features/exercise/components/molecules/OverviewCard";
+import OverviewCard from "@/shared/navigation/components/OverviewCard";
 
 const ExercisePage = () => {
   const [overviewData, setOverviewData] = useState({
@@ -21,7 +21,7 @@ const ExercisePage = () => {
     streakDays: 7,
   });
   return (
-    <div>
+    <>
       <div className="f-align justify-between mb-6">
         <span className="space-y-1.5">
           <p className="font-medium">Organize your workout routine</p>
@@ -64,14 +64,14 @@ const ExercisePage = () => {
           icon={<CalendarCheck2Icon size={40} />}
         />
         <OverviewCard
-          title={"Calories burnt"}
+          title={"Streak"}
           value={overviewData.streakDays}
           unit="Days"
           icon={<ArrowUpFromDotIcon size={40} />}
         />
       </div>
       <h2 className="text-2xl font-medium mb-6 my-6">Workout</h2>
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 *:rounded-xl">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 *:rounded-4xl">
         <div className="lg:col-span-3 space-y-6 sm:gap-6  h-auto sm:space-y-0 bg-white p-6 grid grid-cols-1 sm:grid-cols-3">
           <WorkoutTracker />
           <WorkoutHistory />
@@ -80,7 +80,7 @@ const ExercisePage = () => {
           <WeightChart />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
