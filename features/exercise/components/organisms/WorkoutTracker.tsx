@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const WorkoutTracker = () => {
   return (
-    <div className="flex flex-col border border-dashed border-black/30 justify-between h-full bg-white  rounded-xl col-span-1 p-6">
+    <div className="flex flex-col border border-dashed border-black/30 justify-between h-full bg-white  rounded-4xl col-span-1 p-6">
       <p className="font-medium text-primary">Workout tracker</p>
 
       <div className="mt-6 "> 
@@ -38,7 +38,7 @@ const WorkoutTracker = () => {
           </div>
         </div>
 
-          <button className="mb-6 sm:mb-0 mt-6  f-align justify-center w-full gap-1.5 bg-secondary p-3 rounded-xl text-white">
+          <button className="mb-6 sm:mb-0 mt-6  f-align justify-center w-full gap-1.5 bg-secondary p-3 rounded-3xl text-white">
             <span>Add workout</span>
             <PlusIcon size={18} />
           </button>

@@ -2,7 +2,7 @@ import { ChevronRightIcon } from "lucide-react";
 
 const WorkoutHistory = () => {
   return (
-    <div className="bg-primary rounded-2xl p-6 col-span-2 mt-6 sm:mt-0">
+    <div className="bg-primary rounded-4xl p-6 col-span-2 mt-6 sm:mt-0">
       <p className="font-medium text-white">history</p>
       <ul className="mt-6 space-y-3">
         <li className="grid text-sm grid-cols-[50px_1fr_50px] items-center text-white py-2">
