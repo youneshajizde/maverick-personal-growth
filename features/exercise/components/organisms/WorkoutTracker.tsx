@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const WorkoutTracker = () => {
   return (
-    <div className="flex flex-col border border-dashed border-black/30 justify-between h-full bg-white  rounded-4xl col-span-1 p-6">
+    <div className="flex flex-col border border-dashed border-black/30 justify-between bg-white  rounded-4xl col-span-1 p-6">
       <p className="font-medium text-primary">Workout tracker</p>
 
       <div className="mt-6 "> 

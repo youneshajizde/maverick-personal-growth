@@ -71,8 +71,8 @@ const ExercisePage = () => {
         />
       </div>
       <h2 className="text-2xl font-medium mb-6 my-6">Workout</h2>
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 *:rounded-4xl">
-        <div className="lg:col-span-3 space-y-6 sm:gap-6  h-auto sm:space-y-0 bg-white p-6 grid grid-cols-1 sm:grid-cols-3">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 *:rounded-4xl min-h-[300px] items-stretch">
+        <div className="lg:col-span-3 space-y-6 sm:gap-6 sm:space-y-0 bg-white p-6 grid grid-cols-1 sm:grid-cols-3">
           <WorkoutTracker />
           <WorkoutHistory />
         </div>

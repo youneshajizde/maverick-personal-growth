@@ -1,5 +1,8 @@
 "use client";
 
+import RadialChart from "@/features/diet/components/organisms/HydrationChart";
+import MealCard from "@/features/diet/components/organisms/MealCard";
+import ProgressBar from "@/shared/navigation/components/molecules/ProgressBar";
 import OverviewCard from "@/shared/navigation/components/OverviewCard";
 import {
   ArrowUpFromDotIcon,
@@ -68,69 +71,64 @@ const DietPage = () => {
         />
       </div>
 
-      <div className="My-6 grid grid-cols-1 lg:grid-cols-8 gap-6 mt-6">
-        <div className="col-span-3 h-60">
+      <div className="my-6 grid grid-cols-1 lg:grid-cols-8 gap-6 items-stretch min-h-[300px]">
+        <div className="col-span-3 flex flex-col">
           <h2 className="text-2xl font-medium mb-6">Meals Today</h2>
-          <div className="space-y-3">
-            <div className="rounded-3xl bg-white w-full h-auto p-3">
-              <div className="space-y-3">
-                <p className="font-medium text-primary">Breakfast</p>
-                <span className="f-align gap-3">
-                  <p className="bg-danger/40 p-1.5 rounded-lg w-8 h-8 f-center">
-                    🔥
-                  </p>
-                  <p className="f-align gap-1.5">
-                    <span>801</span>
-                    <span className="text-sm text-black/30">Kcal</span>
-                  </p>
-                </span>
-              </div>
-
-              <div className="f-align">
-                <div className="rounded-full"></div>
-              </div>
-            </div>
-            <div className="rounded-3xl bg-white w-full h-auto p-3">
-              <div className="space-y-3">
-                <p className="font-medium text-primary">Breakfast</p>
-                <span className="f-align gap-3">
-                  <p className="bg-danger/40 p-1.5 rounded-lg w-8 h-8 f-center">
-                    🔥
-                  </p>
-                  <p className="f-align gap-1.5">
-                    <span>801</span>
-                    <span className="text-sm text-black/30">Kcal</span>
-                  </p>
-                </span>
-              </div>
-            </div>
-            <div className="rounded-3xl bg-white w-full h-auto p-3">
-              <div className="space-y-3">
-                <p className="font-medium text-primary">Breakfast</p>
-                <span className="f-align gap-3">
-                  <p className="bg-danger/40 p-1.5 rounded-lg w-8 h-8 f-center">
-                    🔥
-                  </p>
-                  <p className="f-align gap-1.5">
-                    <span>801</span>
-                    <span className="text-sm text-black/30">Kcal</span>
-                  </p>
-                </span>
-              </div>
-            </div>
+          <div className="space-y-3 flex-1 flex flex-col">
+            <MealCard />
+            <MealCard />
+            <MealCard />
           </div>
         </div>
-        <div className="col-span-2 h-60">
+        <div className="col-span-2 flex flex-col">
           <h2 className="text-2xl font-medium mb-6">Macros</h2>
-          <div className="bg-[#F6FF99] h-full rounded-4xl">
+          <div className="bg-white p-6 rounded-4xl flex-1 w-full">
+            <ul className="space-y-6">
+              <li className="flex items-center gap-1.5">
+                <div className="bg-progress w-11 h-11 flex items-center justify-center text-sm text-white rounded-xl font-medium">
+                  54 g
+                </div>
+                <div className="flex-1 flex flex-col space-y-1.5">
+                  <span className="flex justify-between items-center *:font-medium *:text-sm">
+                    <p>Carbohydrate</p>
+                    <p>65%</p>
+                  </span>
+                  <ProgressBar percentage={65} />
+                </div>
+              </li>
+              <li className="flex items-center gap-1.5">
+                <div className="bg-progress w-11 h-11 flex items-center justify-center text-sm text-white rounded-xl font-medium">
+                  54 g
+                </div>
+                <div className="flex-1 flex flex-col space-y-1.5">
+                  <span className="flex justify-between items-center *:font-medium *:text-sm">
+                    <p>Protein</p>
+                    <p>30%</p>
+                  </span>
+                  <ProgressBar percentage={30} />
+                </div>
+              </li>
+              <li className="flex items-center gap-1.5">
+                <div className="bg-progress w-11 h-11 flex items-center justify-center text-sm text-white rounded-xl font-medium">
+                  54 g
+                </div>
+                <div className="flex-1 flex flex-col space-y-1.5">
+                  <span className="flex justify-between items-center *:font-medium *:text-sm">
+                    <p>Fat</p>
+                    <p>82%</p>
+                  </span>
+                  <ProgressBar percentage={82} />
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
-        <div className="col-span-3 h-60">
+        <div className="col-span-3 flex flex-col">
           <h2 className="text-2xl font-medium mb-6">Hydration</h2>
-          <div className="relative h-full  rounded-4xl overflow-hidden" >
+          <div className="relative min-h-[200px] sm:min-h-[250px] lg:min-h-[300px] rounded-4xl overflow-hidden flex-1">
             <Image
               alt="hydration"
-              src={"/images/hydration.jpg"}
+              src="/images/hydration.jpg"
               fill
               className="rounded-xl object-cover absolute w-full"
             />
@@ -141,7 +139,9 @@ const DietPage = () => {
               </p>
               <p className="text-light text-xs">06:00 am - 06:00 pm</p>
             </div>
-            <div className="absolute bottom-6 right-6 text-white z-50 w-40 h-13 rounded-3xl bg-white">sdfdf</div>
+            <div className="absolute bottom-6 right-6 w-10 h-10 bg-white text-white z-50 rounded-3xl ">
+           
+            </div>
           </div>
         </div>
       </div>
