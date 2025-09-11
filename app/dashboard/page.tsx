@@ -39,21 +39,18 @@ const Dashboard = () => {
           value={overviewData.calories}
           unit="points"
           icon={<DumbbellIcon size={40} />}
-          className="bg-primary"
         />
         <OverviewCard
           title={"Diet"}
           value={overviewData.workoutsCompleted}
           unit="points"
           icon={<DonutIcon size={40} />}
-          className="bg-primary"
         />
         <OverviewCard
           title={"Study"}
           value={overviewData.streakDays}
           unit="points"
           icon={<GraduationCapIcon size={40} />}
-          className="bg-primary"
         />
       </div>
     </section>
