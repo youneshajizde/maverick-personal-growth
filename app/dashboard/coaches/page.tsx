@@ -74,7 +74,7 @@ const CoachesPage = () => {
                   height={15}
                 />
               </p>
-              <p className="flex gap-3 inline-flex">
+              <p className="flex gap-3">
                 <span className="text-sm">$170.00/hr</span>
                 <span className="flex gap-1 items-center">
                   <MapPinIcon size={17} />
