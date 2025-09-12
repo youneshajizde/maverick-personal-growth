@@ -15,12 +15,8 @@ const Navbar = () => {
   return (
     <>
       <section className="bg-white rounded-3xl p-3 w-full flex justify-between sm:hidden">
-        <div className="f-align gap-1">
+    
           <Image src="/images/logo-1.png" alt="logo" width={45} height={45} />
-          <p className=" text-secondary lg:text-sm xl:text-lg font-semibold">
-            Maverick
-          </p>
-        </div>
         <button className="" onClick={() => setIsMenuOpen(true)}>
           <MenuIcon />
         </button>
