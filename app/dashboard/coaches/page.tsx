@@ -1,11 +1,14 @@
 import {
   EllipsisVerticalIcon,
-  LocationEditIcon,
   MapPinIcon,
   MessageCircleMoreIcon,
+  SearchIcon,
+  SendHorizonalIcon,
+  SendIcon,
 } from "lucide-react";
 import Image from "next/image";
 import React from "react";
+import Selectbox from "@/shared/components/molecules/Selectbox";
 
 const CoachesPage = () => {
   return (
@@ -39,8 +42,21 @@ const CoachesPage = () => {
         </div>
       </div>
 
-      <div className="mt-6 grid grid-cols-1 gap-3 lg:grid-cols-3">
-        {Array.from({ length: 3 }).map((_, i) => (
+      <div className="max-w-xl f-align gap-3">
+        <div className="w-80 bg-white rounded-xl f-align gap-1.5 p-3">
+          <SearchIcon className="" size={20} />
+          <input
+            placeholder="Search between more than 1000 coaches"
+            className="w-full text-sm outline-none placeholder:text-xs"
+          />
+        </div>
+
+
+       <Selectbox/>
+      </div>
+
+      <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
+        {Array.from({ length: 9 }).map((_, i) => (
           <div
             key={i}
             className="card flex gap-1.5 bg-white rounded-3xl min-h-[160px] p-1"
@@ -56,8 +72,8 @@ const CoachesPage = () => {
               </div>
               <div className="flex items-center gap-1.5">
                 <button className="flex items-center justify-center gap-1.5 bg-secondary rounded-lg p-1.5 text-sm text-white">
-                  <span>chat</span>
-                  <MessageCircleMoreIcon size={17} />
+                  <span>Connect</span>
+                  <SendHorizonalIcon size={15} />
                 </button>
               </div>
             </div>
@@ -66,7 +82,7 @@ const CoachesPage = () => {
                 Product designer
               </p>
               <p className="flex items-center gap-1 ">
-                <span className="font-medium text-sm">Nova Shierly</span>
+                <span className="font-medium text-base">Nova Shierly</span>
                 <Image
                   alt="verified"
                   src="/images/icons/verified.svg"
