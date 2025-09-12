@@ -9,6 +9,7 @@ import {
 import Image from "next/image";
 import React from "react";
 import Selectbox from "@/shared/components/molecules/Selectbox";
+import Searchbox from "@/shared/components/molecules/Searchbox";
 
 const CoachesPage = () => {
   return (
@@ -43,16 +44,8 @@ const CoachesPage = () => {
       </div>
 
       <div className="max-w-xl f-align gap-3">
-        <div className="w-80 bg-white rounded-xl f-align gap-1.5 p-3">
-          <SearchIcon className="" size={20} />
-          <input
-            placeholder="Search between more than 1000 coaches"
-            className="w-full text-sm outline-none placeholder:text-xs"
-          />
-        </div>
-
-
-       <Selectbox/>
+        <Searchbox />
+        <Selectbox />
       </div>
 
       <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
