@@ -6,7 +6,6 @@ import {
   GraduationCapIcon,
   HouseIcon,
   ListIcon,
-  MessageSquareMoreIcon,
   ShoppingBagIcon,
   SpeechIcon,
   StoreIcon,
@@ -45,7 +44,7 @@ export const navigationSections: NavigationSection[] = [
         value: "study",
         icon: GraduationCapIcon,
       },
-            {
+      {
         type: "Link",
         title: "Coaches",
         url: "/dashboard/coaches",
@@ -73,7 +72,6 @@ export const navigationSections: NavigationSection[] = [
             value: "products",
             icon: StoreIcon,
           },
-          
         ],
       },
     ],
@@ -89,11 +87,11 @@ export const navigationSections: NavigationSection[] = [
         action: () => console.log("Open Info Modal"),
       },
       {
-        type: "Link",
-        title: "Grps",
-        url: "/dashboard/grps",
-        value: "grps",
-        icon: MessageSquareMoreIcon,
+        type: "Modal",
+        title: "Cart",
+        value: "cart",
+        icon: ShoppingBagIcon,
+        action: () => console.log("Open Info Modal"),
       },
       {
         type: "Link",

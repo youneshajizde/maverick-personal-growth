@@ -2,7 +2,7 @@
 
 import { SearchIcon } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
-import React, { KeyboardEvent, useEffect, useState } from "react";
+import { KeyboardEvent, useEffect, useState } from "react";
 
 const Searchbox = () => {
   const [query, setQuery] = useState("");
@@ -34,9 +34,9 @@ const Searchbox = () => {
     <div className="w-80 bg-white rounded-xl f-align gap-1.5 p-3">
       <SearchIcon className="" size={20} />
       <input
-        value={query}
-        onChange={(e) => setQuery(e.target.value)} // Step 3: Visual typing
         onKeyDown={handleSearch}
+        onChange={(e) => setQuery(e.target.value)}
+        value={query}
         placeholder="Search between more than 1000 coaches"
         className="w-full text-sm outline-none placeholder:text-xs"
       />

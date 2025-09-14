@@ -1,10 +1,13 @@
 "use client";
 
-import { options } from "@/shared/constants/shared.constants";
-import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
+import { ChevronDownIcon } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 
-const Selectbox = () => {
+interface SelectboxProps {
+  options: { value: string; label: string }[];
+}
+
+const Selectbox = ({ options }: SelectboxProps) => {
   const [open, setOpen] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
   const [selectedItem, setSelectedItem] = useState(options[1].label);
