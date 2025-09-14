@@ -10,6 +10,7 @@ import Image from "next/image";
 import React from "react";
 import Selectbox from "@/shared/components/molecules/Selectbox";
 import Searchbox from "@/shared/components/molecules/Searchbox";
+import { COACHES_CATEGORIES } from "@/features/coaches/constants/categories.constants";
 
 const CoachesPage = () => {
   return (
@@ -45,7 +46,7 @@ const CoachesPage = () => {
 
       <div className="max-w-xl f-align gap-3">
         <Searchbox />
-        <Selectbox />
+        <Selectbox options={COACHES_CATEGORIES} />
       </div>
 
       <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
