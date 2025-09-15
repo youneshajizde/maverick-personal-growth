@@ -42,34 +42,3 @@ body {
   scrollbar-width: none; /* Firefox */
 }
 
-
-@keyframes openModal {
-  0% {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.animate-openModal {
-  animation: openModal 200ms ease-out forwards;
-}
-
-
-@keyframes slideUp {
-  0% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.animate-slideUp {
-  animation: slideUp 300ms ease-out forwards;
-}

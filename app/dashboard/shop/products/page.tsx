@@ -68,7 +68,7 @@ const ProductsPage = () => {
         <span className="text-sm">(12 Results)</span>
       </p>
 
-      <div className="mt-6 grid grid-cols-4 gap-6">
+      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
         {Array.from({ length: 6 }).map((_, i) => (
           <div className="bg-white rounded-xl h-50" key={i}></div>
         ))}
