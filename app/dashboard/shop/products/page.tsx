@@ -3,6 +3,7 @@ import Searchbox from "@/shared/components/molecules/Searchbox";
 import Selectbox from "@/shared/components/molecules/Selectbox";
 import { Modal } from "@/shared/components/organisms/modal";
 import { Sheet } from "@/shared/components/organisms/sheet";
+import SheetHeader from "@/shared/components/organisms/sheet/SheetHeader";
 
 import { EllipsisVerticalIcon } from "lucide-react";
 import Image from "next/image";
@@ -47,7 +48,6 @@ const ProductsPage = () => {
         <Selectbox options={PRODUCTS_CATEGORIES} />
         <Modal>
           <Modal.OpenBtn>open</Modal.OpenBtn>
-
           <Modal.Body>
             <Modal.Header>Title</Modal.Header>
             stuff
@@ -55,8 +55,8 @@ const ProductsPage = () => {
 
           <Sheet>
             <Sheet.OpenBtn>open</Sheet.OpenBtn>
-
             <Sheet.Body>
+              <SheetHeader>Filtering products</SheetHeader>
               hello
             </Sheet.Body>
           </Sheet>

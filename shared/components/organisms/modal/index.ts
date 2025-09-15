@@ -7,4 +7,5 @@ export const Modal = Object.assign(ModalRoot, {
   Body: ModalBody,
   OpenBtn: OpenModalBtn,
   Header: ModalHeader,
+  
 });
