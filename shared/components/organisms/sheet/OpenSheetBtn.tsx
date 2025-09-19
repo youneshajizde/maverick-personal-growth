@@ -10,7 +10,7 @@ const OpenSheetBtn = ({ children, className }: ClassNameChildrenT) => {
   return (
     <button
       onClick={() => setOpen(true)}
-      className={cn("rounded-lg bg-white p-3 text-sm", className)}
+      className={cn("", className)}
     >
       {children}
     </button>

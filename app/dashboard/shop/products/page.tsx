@@ -1,3 +1,4 @@
+import ProductCard from "@/features/shop/components/organisms/ProductCard";
 import { PRODUCTS_CATEGORIES } from "@/features/shop/constants/categories.constants";
 import Searchbox from "@/shared/components/molecules/Searchbox";
 import Selectbox from "@/shared/components/molecules/Selectbox";
@@ -43,18 +44,20 @@ const ProductsPage = () => {
         </div>
       </div>
 
-      <div className="max-w-xl f-align gap-3">
+      <div className="w-auto f-align gap-3">
         <Searchbox />
-        <Selectbox options={PRODUCTS_CATEGORIES} />
+        <Selectbox paramKey="category" options={PRODUCTS_CATEGORIES} />
+        <Selectbox paramKey="bunjy" options={PRODUCTS_CATEGORIES} />
+
         <Modal>
-          <Modal.OpenBtn>open</Modal.OpenBtn>
+          <Modal.OpenBtn className="btn btn-white">open</Modal.OpenBtn>
           <Modal.Body>
             <Modal.Header>Title</Modal.Header>
             stuff
           </Modal.Body>
 
           <Sheet>
-            <Sheet.OpenBtn>open</Sheet.OpenBtn>
+            <Sheet.OpenBtn className="btn btn-white">open</Sheet.OpenBtn>
             <Sheet.Body>
               <SheetHeader>Filtering products</SheetHeader>
               hello
@@ -64,13 +67,18 @@ const ProductsPage = () => {
       </div>
 
       <p className="mt-6 space-x-1.5">
-        <span className="text-xl">Books</span>
+        <span className="text-xl ">Books</span>
         <span className="text-sm">(12 Results)</span>
       </p>
 
       <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
         {Array.from({ length: 6 }).map((_, i) => (
-          <div className="bg-white rounded-xl h-50" key={i}></div>
+          <ProductCard
+            key={i}
+            title="Blessed Luca"
+            price={130}
+            imgSrc="/images/shoe.png"
+          />
         ))}
       </div>
     </>
