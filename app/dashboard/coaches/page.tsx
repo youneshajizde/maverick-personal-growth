@@ -11,6 +11,7 @@ import React from "react";
 import Selectbox from "@/shared/components/molecules/Selectbox";
 import Searchbox from "@/shared/components/molecules/Searchbox";
 import { COACHES_CATEGORIES } from "@/features/coaches/constants/categories.constants";
+import Badge from "@/shared/components/atoms/Badge";
 
 const CoachesPage = () => {
   return (
@@ -46,7 +47,7 @@ const CoachesPage = () => {
 
       <div className="max-w-xl f-align gap-3">
         <Searchbox />
-        <Selectbox options={COACHES_CATEGORIES} />
+        <Selectbox paramKey="category" options={COACHES_CATEGORIES} />
       </div>
 
       <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
@@ -65,7 +66,7 @@ const CoachesPage = () => {
                 />
               </div>
               <div className="flex items-center gap-1.5">
-                <button className="flex items-center justify-center gap-1.5 bg-secondary rounded-lg p-1.5 text-sm text-white">
+                <button className="btn btn-lg f-center gap-1.5">
                   <span>Connect</span>
                   <SendHorizonalIcon size={15} />
                 </button>
@@ -92,15 +93,15 @@ const CoachesPage = () => {
                 </span>
               </p>
               <ul className="flex gap-3 text-sm">
-                <li className="bg-foreground inline-block rounded-lg px-1.5 py-1">
+                <Badge variant="info">
                   UI/UX
-                </li>
-                <li className="bg-foreground inline-block rounded-lg px-1.5 py-1">
+                </Badge>
+                <Badge variant="info" className="bg-foreground inline-block rounded-lg px-1.5 py-1">
                   Motion
-                </li>
-                <li className="bg-foreground inline-block rounded-lg px-1.5 py-1">
+                </Badge>
+                <Badge variant="info" className="bg-foreground inline-block rounded-lg px-1.5 py-1">
                   Illustrator
-                </li>
+                </Badge>
               </ul>
             </div>
           </div>

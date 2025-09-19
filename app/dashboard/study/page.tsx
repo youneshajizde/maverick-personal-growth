@@ -123,11 +123,11 @@ const StudyPage = () => {
             </div>
 
             <div className="w-full f-align  justify-between items-end">
-              <button className="f-align gap-1.5 bg-accent rounded-lg p-1.5 text-sm *:text-white">
+              <button className="f-align gap-1.5 btn btn-lg btn-accent">
                 <span>Add session</span>
                 <BookPlusIcon size={20} />
               </button>
-              <button className="f-align gap-1.5 bg-secondary rounded-lg p-1.5 text-sm *:text-white">
+              <button className="f-align gap-1.5 btn btn-lg">
                 <span>History logs</span>
                 <HistoryIcon size={20} />
               </button>
@@ -187,11 +187,11 @@ const StudyPage = () => {
                 </div>
 
                 <div className="f-align gap-3">
-                  <button className="text-white f-align gap-1.5 bg-secondary p-1.5 rounded-lg">
+                  <button className="btn btn-lg f-align gap-1.5">
                     <span>Download</span>
                     <DownloadIcon size={20}/>
                   </button>
-                   <button className="text-white f-align gap-1.5 bg-secondary p-1.5 rounded-lg">
+                   <button className="btn btn-lg text-white f-align gap-1.5">
                     <span>Summary</span>
                     <FileTextIcon size={20}/>
                   </button>

@@ -38,7 +38,7 @@ const WorkoutTracker = () => {
           </div>
         </div>
 
-          <button className="mb-6 sm:mb-0 mt-6  f-align justify-center w-full gap-1.5 bg-secondary p-3 rounded-3xl text-white">
+          <button className="btn btn-lg mb-6 sm:mb-0 mt-6  f-align justify-center w-full gap-1.5">
             <span>Add workout</span>
             <PlusIcon size={18} />
           </button>
