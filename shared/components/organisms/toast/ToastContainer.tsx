@@ -58,10 +58,10 @@ export default ToastContainer;
 
 const AutoDismiss = ({
   id,
-  duration = 4000,
+  duration,
   removeToast,
 }: {
-  duration: number ;
+  duration?: number;
   id: string;
   removeToast: (id: string) => void;
 }) => {

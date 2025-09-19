@@ -9,7 +9,7 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
 
   const addToast = (message : string , type : ToastType , duration? : number) => {
     const id = Math.random().toString(36).substr(2,9)
-    setToasts((prev) => [...prev , {id , message , type , duration}])
+    setToasts((prev) => [...prev , {id , message , type , duration: duration ?? 4000}])
   }
 
   const removeToast = (id : string) => {

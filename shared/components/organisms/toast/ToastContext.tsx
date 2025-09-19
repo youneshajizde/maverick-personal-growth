@@ -13,7 +13,7 @@ export type ToastT = {
 };
 
 type ToastContextT = {
-  addToast: (message: string, type: ToastType, duration: 2000) => void;
+  addToast: (message: string, type: ToastType, duration? : number) => void;
   removeToast: (id: string) => void;
   toasts : ToastT[]
 };
