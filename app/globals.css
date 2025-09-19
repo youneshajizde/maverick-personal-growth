@@ -42,3 +42,37 @@ body {
   scrollbar-width: none; /* Firefox */
 }
 
+
+
+@utility btn {
+  @apply text-sm p-3 rounded-lg text-white bg-secondary;
+}
+
+
+@utility btn-primary {
+  @apply bg-primary
+}
+
+@utility btn-white {
+  @apply bg-white text-black
+}
+
+@utility btn-accent {
+  @apply bg-accent
+}
+
+@utility btn-ghost {
+  @apply bg-transparent
+}
+
+@utility btn-sm {
+  @apply px-2 py-1 text-sm 
+}
+
+@utility btn-lg {
+  @apply px-3 py-2 
+}
+
+@utility btn-round {
+  @apply rounded-full
+}
