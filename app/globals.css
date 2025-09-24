@@ -7,14 +7,16 @@
 
 @theme {
   --color-primary: #064232; /* Deep Indigo Blue */
-  --color-secondary: #568F87; /* Bright Sky Blue */
-  --color-accent: #F5BABB; /* Golden Yellow */
-  --color-light: #E1FFEE; /* Soft Gray-White */
+  --color-secondary: #568f87; /* Bright Sky Blue */
+  --color-accent: #efa3a4; /* Golden Yellow */
+  --color-light: #e1ffee; /* Soft Gray-White */
   --color-dark: #111827; /* Rich Charcoal */
   --color-text-light: #1f2937; /* Cool Gray */
   --color-text-dark: #f9fafb; /* Off White */
   --color-progress: #22c55e; /* Vibrant Green */
-  --color-danger :  #fce7c3;
+  --color-warning: #fce7c3;
+  --color-danger: #dc3545;
+
   --color-foreground: #f7f7f7;
 }
 
@@ -42,37 +44,47 @@ body {
   scrollbar-width: none; /* Firefox */
 }
 
-
-
 @utility btn {
   @apply text-sm p-3 rounded-xl text-white bg-secondary;
 }
 
-
 @utility btn-primary {
-  @apply bg-primary
+  @apply bg-primary;
 }
 
 @utility btn-white {
-  @apply bg-white text-black
+  @apply bg-white text-black;
+}
+
+@utility btn-accept {
+  @apply bg-progress;
+}
+
+@utility btn-danger {
+  @apply bg-danger;
 }
 
 @utility btn-accent {
-  @apply bg-accent
+  @apply bg-accent;
 }
 
 @utility btn-ghost {
-  @apply bg-transparent
+  @apply bg-transparent;
 }
 
 @utility btn-sm {
-  @apply px-2 py-1 text-sm 
+  @apply px-2 py-1 text-sm;
 }
 
 @utility btn-lg {
-  @apply px-3 py-2 
+  @apply px-3 py-2;
 }
 
+@utility btn-xl {
+  @apply px-4 py-3 text-base font-medium;
+}
+
+
 @utility btn-round {
-  @apply rounded-full
+  @apply rounded-full;
 }

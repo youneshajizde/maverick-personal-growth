@@ -8,6 +8,7 @@ import {
   ArrowUpFromDotIcon,
   DrumstickIcon,
   EllipsisVerticalIcon,
+  GlassWaterIcon,
   HandPlatterIcon,
 } from "lucide-react";
 import Image from "next/image";
@@ -71,7 +72,7 @@ const DietPage = () => {
         />
       </div>
 
-      <div className="my-6 grid grid-cols-1 lg:grid-cols-8 gap-6 items-stretch min-h-[300px]">
+      <div className="my-6 grid grid-cols-1 lg:grid-cols-8 gap-6 items-start">
         <div className="col-span-3 flex flex-col">
           <h2 className="text-2xl font-medium mb-6">Meals Today</h2>
           <div className="space-y-3 flex-1 flex flex-col">
@@ -123,9 +124,9 @@ const DietPage = () => {
             </ul>
           </div>
         </div>
-        <div className="col-span-3 flex flex-col">
+        <div className="min-h-[285px] col-span-3 flex flex-col">
           <h2 className="text-2xl font-medium mb-6">Hydration</h2>
-          <div className="relative min-h-[200px] sm:min-h-[250px] lg:min-h-[300px] rounded-4xl overflow-hidden flex-1">
+          <div className="relative  rounded-4xl overflow-hidden flex-1">
             <Image
               alt="hydration"
               src="/images/hydration.jpg"
@@ -139,7 +140,9 @@ const DietPage = () => {
               </p>
               <p className="text-light text-xs">06:00 am - 06:00 pm</p>
             </div>
-            <div className="absolute bottom-6 right-6 w-10 h-10 bg-white text-white z-50 rounded-3xl ">
+            <div className="absolute f-align gap-3 p-3 bottom-6 right-6 border border-white z-50 rounded-2xl ">
+
+              <GlassWaterIcon/>
            
             </div>
           </div>

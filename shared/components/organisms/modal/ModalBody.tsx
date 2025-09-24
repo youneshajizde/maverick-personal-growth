@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { ReactNode } from "react";
 import { useModal } from "./Root";
 import { createPortal } from "react-dom";
 
@@ -19,7 +19,7 @@ const ModalBody = ({ children }: { children: ReactNode }) => {
       <div
         className={`${
           open ? "" : ""
-        } animate-openModal bg-white w-[90%] max-w-md overflow-y-auto min-h-[300px] max-h-[90vh] rounded-3xl z-30 p-3`}
+        } animate-openModal bg-white w-[90%] max-w-md overflow-y-auto h-[300px] rounded-3xl z-30 p-3`}
       >
         {children}
       </div>
