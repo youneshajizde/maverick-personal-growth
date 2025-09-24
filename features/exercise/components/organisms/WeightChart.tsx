@@ -19,7 +19,7 @@ const data = [
   { name: "Fri", uv: 41 },
 ];
 
-const CustomTooltip = ({ active, payload, label }: any) => {
+const CustomTooltip = ({ active, payload, label }: {active :boolean , payload , label : string}) => {
   if (active && payload && payload.length) {
     return (
       <div className="bg-white/90 backdrop-blur-md px-3 py-2 rounded shadow-lg border border-gray-200 text-sm">
@@ -37,10 +37,8 @@ const WeightChart = () => {
       <h4 className="text-primary font-semibold mb-2">PR Record</h4>
       <ResponsiveContainer width="100%" height={250}>
         <AreaChart data={data} margin={{ top: 10, right: 20, left: -10, bottom: 0 }}>
-          {/* soft gridlines */}
           <CartesianGrid strokeDasharray="4 8" vertical={false} stroke="#e2e8f0" />
 
-          {/* subtle axis */}
           <XAxis
             dataKey="name"
             axisLine={false}
@@ -54,7 +52,9 @@ const WeightChart = () => {
             width={30}
           />
 
-          <Tooltip content={<CustomTooltip />} />
+          <Tooltip content={<CustomTooltip active={false} payload={function (): void {
+            throw new Error("Function not implemented.");
+          } } label={""} />} />
 
           {/* gradient fill */}
           <defs>

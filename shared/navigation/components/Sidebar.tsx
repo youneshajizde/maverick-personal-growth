@@ -9,6 +9,7 @@ import LinkItem from "./LinkItem";
 import ActionItem from "./ActionItem";
 import DropdownItem from "./DropdownItem";
 import ModalItem from "./ModalItem";
+import Link from "next/link";
 
 export interface SidebarComponentProps {
   item: NavigationItems;
@@ -67,7 +68,10 @@ const Sidebar = () => {
           ))}
         </div>
 
-        <div className="avatar-div f-align gap-1.5 justify-center lg:justify-start mt-6 flex-shrink-0">
+        <Link
+          href={"/dashboard/profile"}
+          className="avatar-div f-align gap-1.5 justify-center lg:justify-start mt-6 flex-shrink-0"
+        >
           <div className="size-10 lg:size-10 rounded-full relative">
             <Image
               src="/images/avatar2.jpg"
@@ -80,7 +84,7 @@ const Sidebar = () => {
             <p className="font-medium text-xs">Jasmine</p>
             <p className="text-black/30 text-xs">Prodigy</p>
           </span>
-        </div>
+        </Link>
       </div>
 
       <div className="2nd-section f-align justify-center lg:justify-start w-full bg-transparent md:bg-gradient-to-b from-secondary to-secondary/80 rounded-4xl">

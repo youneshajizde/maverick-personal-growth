@@ -1,5 +1,6 @@
 import ProductCard from "@/features/shop/components/organisms/ProductCard";
-import { PRODUCTS_CATEGORIES } from "@/features/shop/constants/categories.constants";
+import { getProducts } from "@/features/shop/lib/api/products";
+import { PRODUCTS_CATEGORIES } from "@/features/shop/lib/constants/categories.constants";
 import Searchbox from "@/shared/components/molecules/Searchbox";
 import Selectbox from "@/shared/components/molecules/Selectbox";
 import { Modal } from "@/shared/components/organisms/modal";
@@ -10,7 +11,11 @@ import { EllipsisVerticalIcon } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 
-const ProductsPage = () => {
+const ProductsPage = async () => {
+  const { data } = await getProducts();
+  console.log("products data : ", data);
+
+  
   return (
     <>
       <div className="f-align justify-between mb-6">
@@ -55,15 +60,14 @@ const ProductsPage = () => {
             <Modal.Header>Title</Modal.Header>
             stuff
           </Modal.Body>
-
-          <Sheet>
-            <Sheet.OpenBtn className="btn btn-white">open</Sheet.OpenBtn>
-            <Sheet.Body>
-              <SheetHeader>Filtering products</SheetHeader>
-              hello
-            </Sheet.Body>
-          </Sheet>
         </Modal>
+        <Sheet>
+          <Sheet.OpenBtn className="btn btn-white">open</Sheet.OpenBtn>
+          <Sheet.Body>
+            <SheetHeader>Filtering products</SheetHeader>
+            hello
+          </Sheet.Body>
+        </Sheet>
       </div>
 
       <p className="mt-6 space-x-1.5">

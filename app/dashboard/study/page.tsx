@@ -86,10 +86,10 @@ const StudyPage = () => {
                 <p>45 min</p>
                 <p>😊</p>
                 <div className="f-align gap-1.5">
-                  <button className="bg-red-500 text-white p-1 rounded-lg">
+                  <button className="btn btn-danger text-white p-1 rounded-lg">
                     <TrashIcon size={20} />
                   </button>
-                  <button className="f-align gap-1.5 *:text-white bg-progress rounded-lg p-1">
+                  <button className="btn btn-accept f-align gap-1.5 *:text-white rounded-lg p-1">
                     <CheckIcon size={20} />
                   </button>
                 </div>
@@ -144,7 +144,7 @@ const StudyPage = () => {
 
         <div className="col-span-3 flex flex-col">
           <h2 className="text-2xl font-medium mb-6">Book Suggestion</h2>
-          <div className="bg-white rounded-4xl gap-3 grid grid-cols-5 flex-1 w-full p-3">
+          <div className="bg-white rounded-4xl gap-3 grid grid-cols-2 lg:grid-cols-5 flex-1 w-full p-3">
             <div
               style={{ background: "url('/images/book.jpg')" }}
               className="relative f-center col-span-2 rounded-3xl bg-secondary"

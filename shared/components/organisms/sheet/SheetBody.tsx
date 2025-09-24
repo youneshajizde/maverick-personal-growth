@@ -40,7 +40,7 @@ const SheetBody = ({ children }: { children: ReactNode }) => {
             stiffness: 300,
             duration: 0.2,
           }}
-          className={`w-full bg-white z-50 overflow-y-auto min-h-[40vh] rounded-t-3xl p-3`}
+          className={`w-full bg-white z-50 h-[60vh] rounded-t-3xl p-3`}
         >
           {children}
         </motion.div>
