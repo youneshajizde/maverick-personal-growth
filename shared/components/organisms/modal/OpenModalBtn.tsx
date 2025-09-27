@@ -10,7 +10,7 @@ const OpenModalBtn = ({ children, className }: ClassNameChildrenT) => {
     return (
     <button
       onClick={() => setOpen(true)}
-      className={cn("", className)}
+      className={cn("cursor-pointer", className)}
     >
       {children}
     </button>

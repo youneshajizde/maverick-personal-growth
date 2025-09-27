@@ -1,10 +1,11 @@
 "use client";
 
+import { cn } from "@/shared/utils/functions";
 import { SearchIcon } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { KeyboardEvent, useEffect, useState } from "react";
 
-const Searchbox = () => {
+const Searchbox = ({className} : {className? : string}) => {
   const [query, setQuery] = useState("");
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -31,7 +32,7 @@ const Searchbox = () => {
   };
 
   return (
-    <div className="w-80 bg-white rounded-xl f-align gap-1.5 p-3">
+    <div className={cn(`w-full bg-white rounded-xl f-align gap-1.5 p-3` , className)}>
       <SearchIcon className="" size={20} />
       <input
         onKeyDown={handleSearch}

@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@/shared/utils/functions";
 import { ChevronDownIcon } from "lucide-react";
 import { useSearchParams, useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
@@ -7,9 +8,10 @@ import React, { useEffect, useRef, useState } from "react";
 interface SelectboxProps {
   options: { value: string; label: string }[];
   paramKey: string;
+  className? : string
 }
 
-const Selectbox = ({ options, paramKey }: SelectboxProps) => {
+const Selectbox = ({ options, paramKey , className }: SelectboxProps) => {
   const [open, setOpen] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
   const searchParams = useSearchParams();
@@ -58,10 +60,10 @@ const Selectbox = ({ options, paramKey }: SelectboxProps) => {
   }, []);
 
   return (
-    <div ref={selectRef} className="relative w-37">
+    <div ref={selectRef} className={cn(`relative w-full` , className)}>
       <button
         onClick={openHandler}
-        className="btn btn-white f-align justify-between gap-3 w-37 transition-all duration-200"
+        className="btn btn-white f-align justify-between gap-3 w-full transition-all duration-200"
         aria-expanded={open}
       >
         <span className="text-sm truncate">{selectedItem.label}</span>
