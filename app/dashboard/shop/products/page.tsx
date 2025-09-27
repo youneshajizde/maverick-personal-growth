@@ -1,21 +1,14 @@
-import ProductCard from "@/features/shop/components/organisms/ProductCard";
-import { getProducts } from "@/features/shop/lib/api/products";
+import Filters from "@/features/shop/components/organisms/Filters";
+import ProductsList from "@/features/shop/components/organisms/ProductsList";
 import { PRODUCTS_CATEGORIES } from "@/features/shop/lib/constants/categories.constants";
 import Searchbox from "@/shared/components/molecules/Searchbox";
 import Selectbox from "@/shared/components/molecules/Selectbox";
-import { Modal } from "@/shared/components/organisms/modal";
-import { Sheet } from "@/shared/components/organisms/sheet";
-import SheetHeader from "@/shared/components/organisms/sheet/SheetHeader";
-
+import Spinner from "@/shared/components/molecules/Spinner";
 import { EllipsisVerticalIcon } from "lucide-react";
 import Image from "next/image";
-import React from "react";
+import React, { Suspense } from "react";
 
 const ProductsPage = async () => {
-  const { data } = await getProducts();
-  console.log("products data : ", data);
-
-  
   return (
     <>
       <div className="f-align justify-between mb-6">
@@ -49,42 +42,26 @@ const ProductsPage = async () => {
         </div>
       </div>
 
-      <div className="w-auto f-align gap-3">
-        <Searchbox />
-        <Selectbox paramKey="category" options={PRODUCTS_CATEGORIES} />
-        <Selectbox paramKey="bunjy" options={PRODUCTS_CATEGORIES} />
+      <div className="w-full flex flex-col md:flex-row gap-3">
+        <Searchbox className="w-full md:w-80 " />
 
-        <Modal>
-          <Modal.OpenBtn className="btn btn-white">open</Modal.OpenBtn>
-          <Modal.Body>
-            <Modal.Header>Title</Modal.Header>
-            stuff
-          </Modal.Body>
-        </Modal>
-        <Sheet>
-          <Sheet.OpenBtn className="btn btn-white">open</Sheet.OpenBtn>
-          <Sheet.Body>
-            <SheetHeader>Filtering products</SheetHeader>
-            hello
-          </Sheet.Body>
-        </Sheet>
+        <div className="flex flex-1 gap-3">
+          <Selectbox
+            className="w-full md:w-40"
+            paramKey="category"
+            options={PRODUCTS_CATEGORIES}
+          />
+          <Filters/>
+        </div>
       </div>
 
       <p className="mt-6 space-x-1.5">
         <span className="text-xl ">Books</span>
         <span className="text-sm">(12 Results)</span>
       </p>
-
-      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
-        {Array.from({ length: 6 }).map((_, i) => (
-          <ProductCard
-            key={i}
-            title="Blessed Luca"
-            price={130}
-            imgSrc="/images/shoe.png"
-          />
-        ))}
-      </div>
+      <Suspense fallback={<Spinner className="mt-6" />}>
+        <ProductsList />
+      </Suspense>
     </>
   );
 };
