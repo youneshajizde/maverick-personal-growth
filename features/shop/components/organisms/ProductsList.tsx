@@ -1,22 +1,27 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import ProductCard from "./ProductCard";
 import Placeholder from "@/shared/components/atoms/Placeholder";
 import { getProducts } from "../../lib/api/products";
 import Spinner from "@/shared/components/molecules/Spinner";
 import useSWR from "swr";
-import { useInView } from "react-intersection-observer";
+import { useSearchParams } from "next/navigation";
+
 
 const ProductsList = () => {
-  const {ref , inView} = useInView()
-  const [finished , setFinished] = useState(false)
-  const [offset, setOffset] = useState(0)
-  const limit = 8
 
-  const {data , isLoading} = useSWR("products" , () => getProducts(limit , offset))
+ const searchParams = useSearchParams();
 
-  const products = data?.data ?? []
+  const filters = Object.fromEntries(searchParams.entries());
+
+  const { data, isLoading } = useSWR(
+    ["products", filters],
+    () => getProducts(filters)
+  );
+
+  const products = data?.data ?? [];
+
 
   if (!products)
     return (
@@ -40,7 +45,6 @@ const ProductsList = () => {
         />
       ))}
 
-      <div ref={ref}></div>
     </div>
   );
 };

@@ -8,10 +8,10 @@ import React, { useEffect, useRef, useState } from "react";
 interface SelectboxProps {
   options: { value: string; label: string }[];
   paramKey: string;
-  className? : string
+  className?: string;
 }
 
-const Selectbox = ({ options, paramKey , className }: SelectboxProps) => {
+const Selectbox = ({ options, paramKey, className }: SelectboxProps) => {
   const [open, setOpen] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
   const searchParams = useSearchParams();
@@ -42,7 +42,7 @@ const Selectbox = ({ options, paramKey , className }: SelectboxProps) => {
     setOpen(false);
 
     const params = new URLSearchParams(searchParams.toString());
-    params.set(paramKey, option.value);
+    params.set(`filters[${paramKey}][$eq]`, option.value);
     router.push(`?${params.toString()}`);
   };
 
@@ -60,7 +60,7 @@ const Selectbox = ({ options, paramKey , className }: SelectboxProps) => {
   }, []);
 
   return (
-    <div ref={selectRef} className={cn(`relative w-full` , className)}>
+    <div ref={selectRef} className={cn(`relative w-full`, className)}>
       <button
         onClick={openHandler}
         className="btn btn-white f-align justify-between gap-3 w-full transition-all duration-200"
