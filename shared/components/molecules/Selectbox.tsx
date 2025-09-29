@@ -6,12 +6,13 @@ import { useSearchParams, useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 
 interface SelectboxProps {
-  options: { value: string; label: string }[];
+  options: { value: string ; label: string }[];
   paramKey: string;
   className?: string;
+  onChange? : (value : string) => void
 }
 
-const Selectbox = ({ options, paramKey, className }: SelectboxProps) => {
+const Selectbox = ({ options, paramKey, className , onChange}: SelectboxProps) => {
   const [open, setOpen] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
   const searchParams = useSearchParams();
@@ -40,6 +41,11 @@ const Selectbox = ({ options, paramKey, className }: SelectboxProps) => {
   const selectHandler = (option: { value: string; label: string }) => {
     setSelectedItem(option);
     setOpen(false);
+
+    if(onChange){
+      onChange(option.value)
+      return
+    }
 
     const params = new URLSearchParams(searchParams.toString());
     params.set(`filters[${paramKey}][$eq]`, option.value);
