@@ -51,6 +51,9 @@ body {
 @utility btn-primary {
   @apply bg-primary;
 }
+@utility btn-secondary {
+  @apply bg-secondary;
+}
 
 @utility btn-white {
   @apply bg-white text-black;

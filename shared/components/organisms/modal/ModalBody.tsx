@@ -3,8 +3,9 @@
 import React, { ReactNode } from "react";
 import { useModal } from "./Root";
 import { createPortal } from "react-dom";
+import { cn } from "@/shared/utils/functions";
 
-const ModalBody = ({ children }: { children: ReactNode }) => {
+const ModalBody = ({ children , className }: { children: ReactNode , className? : string}) => {
   const { setOpen, open } = useModal();
 
   if (!open) return null;
@@ -17,9 +18,9 @@ const ModalBody = ({ children }: { children: ReactNode }) => {
       />
 
       <div
-        className={`${
+        className={cn(`${
           open ? "" : ""
-        } animate-openModal bg-white w-[90%] max-w-md overflow-y-auto h-[300px] rounded-3xl z-30 p-3`}
+        } animate-openModal bg-white w-[90%] max-w-md overflow-y-auto min-h-[350px] rounded-3xl z-30 p-3` , className)}
       >
         {children}
       </div>

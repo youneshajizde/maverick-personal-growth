@@ -7,7 +7,7 @@ import { XIcon } from "lucide-react";
 const CloseModalBtn = () => {
   const { setOpen } = useModal();
   return (
-    <button onClick={() => setOpen(false)}>
+    <button className="cursor-pointer" onClick={() => setOpen(false)}>
       <XIcon size={17} />
     </button>
   );
