@@ -1,18 +1,26 @@
 "use client";
 
-import Selectbox from "@/shared/components/molecules/Selectbox";
 import { Modal } from "@/shared/components/organisms/modal";
 import { SlidersHorizontalIcon } from "lucide-react";
-import React from "react";
-import { SHOES_SIZES } from "../../lib/constants/filtes.constants";
-import Radiobtn from "@/shared/components/molecules/Radiobtn";
-import { GENDER } from "@/shared/constants/shared.constants";
+import React, { useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { FILTERS_CONFIG } from "../../lib/constants/filtes.constants";
+import Selectbox from "@/shared/components/molecules/Selectbox";
 
 const Filters = () => {
-  const [filters, setFilters] = React.useState({
-    size: "",
-    gender: "",
-  });
+  const searchParams = useSearchParams();
+  const category = searchParams.get("filters[category][$eq]") || "shoes";
+  const initialFilters: Record<string, string> = {};
+
+  FILTERS_CONFIG[category]?.forEach(
+    (filter) => (initialFilters[filter.key] = "")
+  );
+
+  const [filters, setFilters] = useState(initialFilters);
+
+  const onChangeHandler = (key: string, value: string) => {
+    setFilters((prev) => ({ ...prev, [key]: value }));
+  };
 
   return (
     <Modal>
@@ -22,28 +30,19 @@ const Filters = () => {
       <Modal.Body className="relative">
         <Modal.Header>Filters</Modal.Header>
         <div>
-          <div className="mt-3 space-y-1.5">
-            <p>Sizes</p>
-            <Selectbox
-              className="border border-black/30 rounded-xl"
-              paramKey="size"
-              onChange={(value) =>
-                setFilters((prev) => ({ ...prev, size: value }))
-              }
-              options={SHOES_SIZES}
-            />
-          </div>
-
-          <div className="mt-3 space-y-1.5">
-            <p>Gender</p>
-            <Radiobtn
-              options={GENDER}
-              value={filters.gender}
-              onChange={(val) =>
-                setFilters((prev) => ({ ...prev, gender: val }))
-              }
-            />
-          </div>
+          {FILTERS_CONFIG[category]?.map((filter) => {
+            switch (filter.type) {
+              case "select":
+                return (
+                  <Selectbox
+                  value="s"
+                    label={filter.label}
+                    options={filter.options}
+                    onChange={(val) => onChangeHandler(filter.key , val) }
+                  />
+                );
+            }
+          })}
 
           <div className="absolute bottom-3 right-3">
             <button className="btn btn-secondary rounded-xl">

@@ -1,18 +1,28 @@
 "use client";
 
+import { OptionT } from "@/shared/constants/shared.constants";
 import { cn } from "@/shared/utils/functions";
 import { ChevronDownIcon } from "lucide-react";
 import { useSearchParams, useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 
 interface SelectboxProps {
-  options: { value: string ; label: string }[];
-  paramKey: string;
+  options: OptionT[];
+  paramKey?: string;
+  label?: string;
   className?: string;
-  onChange? : (value : string) => void
+  value?: string;
+  onChange?: (value: string) => void;
 }
 
-const Selectbox = ({ options, paramKey, className , onChange}: SelectboxProps) => {
+const Selectbox = ({
+  options,
+  paramKey,
+  label,
+  className,
+  onChange,
+  value,
+}: SelectboxProps) => {
   const [open, setOpen] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
   const searchParams = useSearchParams();
@@ -25,7 +35,7 @@ const Selectbox = ({ options, paramKey, className , onChange}: SelectboxProps) =
   const [selectedItem, setSelectedItem] = useState(initialOption);
 
   useEffect(() => {
-    const value = searchParams.get(paramKey);
+    const value = searchParams.get(paramKey) ;
     if (value) {
       const match = options.find((opt) => opt.value === value);
       if (match) {
@@ -42,9 +52,9 @@ const Selectbox = ({ options, paramKey, className , onChange}: SelectboxProps) =
     setSelectedItem(option);
     setOpen(false);
 
-    if(onChange){
-      onChange(option.value)
-      return
+    if (onChange) {
+      onChange(option.value);
+      return;
     }
 
     const params = new URLSearchParams(searchParams.toString());
@@ -66,44 +76,47 @@ const Selectbox = ({ options, paramKey, className , onChange}: SelectboxProps) =
   }, []);
 
   return (
-    <div ref={selectRef} className={cn(`relative w-full`, className)}>
-      <button
-        onClick={openHandler}
-        className="btn btn-white f-align justify-between gap-3 w-full transition-all duration-200"
-        aria-expanded={open}
-      >
-        <span className="text-sm truncate">{selectedItem.label}</span>
-        <ChevronDownIcon
-          className={`transition-transform duration-300 ${
-            open ? "rotate-180" : ""
-          }`}
-          size={17}
-        />
-      </button>
-
-      <ul
-        className={`absolute top-full mt-1 w-full bg-white rounded-xl border border-gray-200 shadow-lg p-3 z-30 max-h-60 overflow-auto space-y-1 transition-all duration-200 ease-in-out ${
-          open
-            ? "opacity-100 translate-y-0 pointer-events-auto"
-            : "opacity-0 -translate-y-2 pointer-events-none"
-        }`}
-      >
-        {options.map((option, i) => (
-          <li
-            key={i}
-            className={`cursor-pointer px-3 py-2 truncate text-sm text-gray-700 rounded-lg transition-colors duration-150 hover:bg-gray-100 ${
-              selectedItem.value === option.value
-                ? "bg-secondary text-white hover:bg-opacity-90"
-                : ""
+    <div className="space-y-1.5">
+      <label htmlFor="">{label}</label>
+      <div ref={selectRef} className={cn(`relative w-full`, className)}>
+        <button
+          onClick={openHandler}
+          className="btn btn-white f-align justify-between gap-3 w-full transition-all duration-200"
+          aria-expanded={open}
+        >
+          <span className="text-sm truncate">{selectedItem?.label}</span>
+          <ChevronDownIcon
+            className={`transition-transform duration-300 ${
+              open ? "rotate-180" : ""
             }`}
-            onClick={() => selectHandler(option)}
-            role="option"
-            aria-selected={selectedItem.value === option.value}
-          >
-            {option.label}
-          </li>
-        ))}
-      </ul>
+            size={17}
+          />
+        </button>
+
+        <ul
+          className={`absolute top-full mt-1 w-full bg-white rounded-xl border border-gray-200 shadow-lg p-3 z-30 max-h-60 overflow-auto space-y-1 transition-all duration-200 ease-in-out ${
+            open
+              ? "opacity-100 translate-y-0 pointer-events-auto"
+              : "opacity-0 -translate-y-2 pointer-events-none"
+          }`}
+        >
+          {options.map((option, i) => (
+            <li
+              key={i}
+              className={`cursor-pointer px-3 py-2 truncate text-sm text-gray-700 rounded-lg transition-colors duration-150 hover:bg-gray-100 ${
+                selectedItem.value === option.value
+                  ? "bg-secondary text-white hover:bg-opacity-90"
+                  : ""
+              }`}
+              onClick={() => selectHandler(option)}
+              role="option"
+              aria-selected={selectedItem.value === option.value}
+            >
+              {option.label}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
