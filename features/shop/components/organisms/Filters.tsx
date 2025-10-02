@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { FILTERS_CONFIG } from "../../lib/constants/filtes.constants";
 import Selectbox from "@/shared/components/molecules/Selectbox";
+import Radiobtn from "@/shared/components/molecules/Radiobtn";
 
 const Filters = () => {
   const searchParams = useSearchParams();
@@ -37,6 +38,16 @@ const Filters = () => {
                   <Selectbox
                     value={filters[filter.key]}
                     label={filter.label}
+                    options={filter.options}
+                    onChange={(val) => onChangeHandler(filter.key, val)}
+                  />
+                );
+
+              case "radio":
+                return (
+                  <Radiobtn
+                    label={filter.label}
+                    value={filters[filter.key]}
                     options={filter.options}
                     onChange={(val) => onChangeHandler(filter.key, val)}
                   />
