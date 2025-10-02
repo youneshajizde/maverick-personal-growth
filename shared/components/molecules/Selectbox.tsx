@@ -3,7 +3,6 @@
 import { OptionT } from "@/shared/constants/shared.constants";
 import { cn } from "@/shared/utils/functions";
 import { ChevronDownIcon } from "lucide-react";
-import { useSearchParams, useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 
 interface SelectboxProps {
@@ -17,33 +16,16 @@ interface SelectboxProps {
 
 const Selectbox = ({
   options,
-  paramKey,
   label,
   className,
-  onChange,
-  value,
+
 }: SelectboxProps) => {
   const [open, setOpen] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
-  const searchParams = useSearchParams();
-  const router = useRouter();
 
-  const initialValue = searchParams.get(paramKey!);
-  const initialOption =
-    options.find((opt) => opt.value === initialValue) || options[0];
+  const [selectedItem, setSelectedItem] = useState(options[0]);
 
-  const [selectedItem, setSelectedItem] = useState(initialOption);
-
-  useEffect(() => {
-    if (!paramKey) return;
-    const value = searchParams.get(paramKey);
-    if (value) {
-      const match = options.find((opt) => opt.value === value);
-      if (match) {
-        setSelectedItem(match);
-      }
-    }
-  }, [paramKey, searchParams, options]);
+ 
 
   const openHandler = () => {
     setOpen(!open);
@@ -53,15 +35,7 @@ const Selectbox = ({
     setSelectedItem(option);
     setOpen(false);
 
-    if (onChange) {
-      onChange(option.value);
-      return;
-    }
-    if (paramKey) {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set(`filters[${paramKey}][$eq]`, option.value);
-      router.push(`?${params.toString()}`);
-    }
+ 
   };
 
   useEffect(() => {
@@ -78,8 +52,8 @@ const Selectbox = ({
   }, []);
 
   return (
-    <div className="space-y-1.5">
-      <label htmlFor="">{label}</label>
+    <>
+     {label &&  <label htmlFor="" className="font-medium">{label}</label>}
       <div ref={selectRef} className={cn(`relative w-full`, className)}>
         <button
           onClick={openHandler}
@@ -119,7 +93,7 @@ const Selectbox = ({
           ))}
         </ul>
       </div>
-    </div>
+    </>
   );
 };
 

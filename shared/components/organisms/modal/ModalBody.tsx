@@ -20,7 +20,7 @@ const ModalBody = ({ children , className }: { children: ReactNode , className? 
       <div
         className={cn(`${
           open ? "" : ""
-        } animate-openModal bg-white w-[90%] max-w-md overflow-y-auto min-h-[350px] rounded-3xl z-30 p-3` , className)}
+        } animate-openModal bg-white w-[90%] max-w-md overflow-y-auto min-h-[380px] rounded-3xl z-30 p-3` , className)}
       >
         {children}
       </div>

@@ -29,6 +29,8 @@ const ProductCard = ({ imgSrc, title, price }: ProductCardProps) => {
     }, 1000);
   };
 
+  
+
   return (
     <div className="bg-white rounded-xl h-65 overflow-hidden p-1">
       <div className="bg-gray-200 f-center relative rounded-xl h-3/4">
