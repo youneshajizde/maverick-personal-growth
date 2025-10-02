@@ -22,8 +22,7 @@ const ProductsList = () => {
 
   const products = data?.data ?? [];
 
-
-  if (!products)
+  if (!products || products.length === 0)
     return (
       <Placeholder className="mt-6" color="warning">
         There is no products

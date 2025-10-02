@@ -35,10 +35,10 @@ const Filters = () => {
               case "select":
                 return (
                   <Selectbox
-                  value="s"
+                    value={filters[filter.key]}
                     label={filter.label}
                     options={filter.options}
-                    onChange={(val) => onChangeHandler(filter.key , val) }
+                    onChange={(val) => onChangeHandler(filter.key, val)}
                   />
                 );
             }

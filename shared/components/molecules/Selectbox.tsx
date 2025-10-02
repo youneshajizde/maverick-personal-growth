@@ -28,14 +28,15 @@ const Selectbox = ({
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const initialValue = searchParams.get(paramKey);
+  const initialValue = searchParams.get(paramKey!);
   const initialOption =
     options.find((opt) => opt.value === initialValue) || options[0];
 
   const [selectedItem, setSelectedItem] = useState(initialOption);
 
   useEffect(() => {
-    const value = searchParams.get(paramKey) ;
+    if (!paramKey) return;
+    const value = searchParams.get(paramKey);
     if (value) {
       const match = options.find((opt) => opt.value === value);
       if (match) {
@@ -56,10 +57,11 @@ const Selectbox = ({
       onChange(option.value);
       return;
     }
-
-    const params = new URLSearchParams(searchParams.toString());
-    params.set(`filters[${paramKey}][$eq]`, option.value);
-    router.push(`?${params.toString()}`);
+    if (paramKey) {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set(`filters[${paramKey}][$eq]`, option.value);
+      router.push(`?${params.toString()}`);
+    }
   };
 
   useEffect(() => {
