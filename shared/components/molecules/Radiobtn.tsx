@@ -26,7 +26,7 @@ const Radiobtn = ({
 
   return (
     <div className="space-y-1.5">
-      <p>{label}</p>
+      <p className="font-medium">{label}</p>
       <div className={cn(`f-align gap-6`, className)}>
         {options?.map((opt, i) => (
           <div
