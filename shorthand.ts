@@ -8,8 +8,7 @@
               }
               options={SHOES_SIZES}
             />
-          </div>
-dsfsdfgfdfdgd
+terteryterythfd gbfderhesdsfsdfgfdfdgd
           <div className="mt-3 space-y-1.5">
             <p>Gender</p>
             <Radiobtn
