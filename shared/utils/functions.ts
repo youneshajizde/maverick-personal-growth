@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { queryParamsT } from "../types/global.types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -40,4 +41,17 @@ export const safeFetch = async <T>(
     return { data: null, error: err.message || "Unknown error" };
   }
 };
+
+
+
+export const paramBuilder = (paramObj: Record<string, string>) => {
+const params = new URLSearchParams()
+  for (const key in paramObj) {
+    params.set(key , paramObj[key])
+  }
+  const queryString = `?${params.toString()}`
+  return queryString
+};
+
+
 

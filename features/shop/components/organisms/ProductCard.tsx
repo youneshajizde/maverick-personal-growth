@@ -29,8 +29,6 @@ const ProductCard = ({ imgSrc, title, price }: ProductCardProps) => {
     }, 1000);
   };
 
-  
-
   return (
     <div className="bg-white rounded-xl h-65 overflow-hidden p-1">
       <div className="bg-gray-200 f-center relative rounded-xl h-3/4">
@@ -39,9 +37,7 @@ const ProductCard = ({ imgSrc, title, price }: ProductCardProps) => {
         <button
           onClick={handleLike}
           disabled={loading}
-          className={`absolute size-8 bg-transparent top-3 right-3 ${
-            liked ? "border-red-500" : "border-white"
-          } f-center border rounded-full`}
+          className={`absolute size-8 bg-transparent top-3 right-3 f-center border rounded-full ${liked ? "border-danger" : "border-white"}`}
         >
           {loading ? (
             <Loader2Icon size={17} className="animate-spin text-gray-400" />

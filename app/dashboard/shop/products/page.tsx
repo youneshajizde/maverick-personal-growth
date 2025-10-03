@@ -44,11 +44,10 @@ const ProductsPage = async () => {
 
       <div className="w-full flex flex-col md:flex-row gap-3">
         <Searchbox searchIn="title" className="w-full md:w-80 " />
-
         <div className="flex flex-1 gap-3">
           <Selectbox
             className="w-full md:w-40"
-            paramKey="category"
+            paramKey="filters[category][name]"
             options={PRODUCTS_CATEGORIES}
           />
           <Filters/>

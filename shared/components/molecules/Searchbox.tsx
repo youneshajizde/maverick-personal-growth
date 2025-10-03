@@ -17,9 +17,9 @@ const Searchbox = ({
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    const initialQuery = searchParams.get("query") || "";
+    const initialQuery = searchParams.get(`filters[${searchIn}][$contains]`) || "";
     setQuery(initialQuery);
-  }, [searchParams]);
+  }, [searchParams , searchIn]);
 
   const handleSearch = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {

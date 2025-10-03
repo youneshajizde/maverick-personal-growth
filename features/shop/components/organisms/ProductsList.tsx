@@ -13,7 +13,8 @@ const ProductsList = () => {
 
   const filters = Object.fromEntries(searchParams.entries());
 
-  console.log("this is the filters", filters);
+  console.log("filters before parambuilder",filters)
+  
   const { data, isLoading, error } = useSWR(["products", filters], () =>
     getProducts(filters)
   );

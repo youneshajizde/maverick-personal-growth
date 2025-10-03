@@ -3,6 +3,7 @@
 import { OptionT } from "@/shared/constants/shared.constants";
 import { cn } from "@/shared/utils/functions";
 import { ChevronDownIcon } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 
 interface SelectboxProps {
@@ -10,22 +11,23 @@ interface SelectboxProps {
   paramKey?: string;
   label?: string;
   className?: string;
-  value?: string;
-  onChange?: (value: string) => void;
 }
 
 const Selectbox = ({
   options,
   label,
   className,
+  paramKey
 
 }: SelectboxProps) => {
   const [open, setOpen] = useState(false);
+  const router = useRouter()
   const selectRef = useRef<HTMLDivElement>(null);
+  const searchParams = useSearchParams()
 
   const [selectedItem, setSelectedItem] = useState(options[0]);
 
- 
+  console.log("selected item " , selectedItem)
 
   const openHandler = () => {
     setOpen(!open);
@@ -35,8 +37,14 @@ const Selectbox = ({
     setSelectedItem(option);
     setOpen(false);
 
- 
+    const params = new URLSearchParams(searchParams.toString())
+
+    params.set(paramKey as string , option.value)
+
+    router.push(`?${params.toString()}`)
+
   };
+  
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {

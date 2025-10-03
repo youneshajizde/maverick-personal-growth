@@ -2,5 +2,6 @@ export type ProductT = {
     id : number
     title : string
     price : number
-    attributes : null
+    attributes : null 
+    category : string
 }
