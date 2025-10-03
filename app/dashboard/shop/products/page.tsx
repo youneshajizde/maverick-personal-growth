@@ -43,7 +43,7 @@ const ProductsPage = async () => {
       </div>
 
       <div className="w-full flex flex-col md:flex-row gap-3">
-        <Searchbox className="w-full md:w-80 " />
+        <Searchbox searchIn="title" className="w-full md:w-80 " />
 
         <div className="flex flex-1 gap-3">
           <Selectbox

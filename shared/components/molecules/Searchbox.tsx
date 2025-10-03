@@ -5,7 +5,13 @@ import { SearchIcon } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { KeyboardEvent, useEffect, useState } from "react";
 
-const Searchbox = ({className} : {className? : string}) => {
+const Searchbox = ({
+  className,
+  searchIn,
+}: {
+  className?: string;
+  searchIn: string;
+}) => {
   const [query, setQuery] = useState("");
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -22,9 +28,9 @@ const Searchbox = ({className} : {className? : string}) => {
       const params = new URLSearchParams(searchParams.toString());
 
       if (trimmedQuery) {
-        params.set("query", trimmedQuery);
+        params.set(`filters[${searchIn}][$contains]`, trimmedQuery);
       } else {
-        params.delete("query");
+        params.delete(`filters[${searchIn}][$contains]`);
       }
 
       router.push(`?${params.toString()}`);
@@ -32,7 +38,12 @@ const Searchbox = ({className} : {className? : string}) => {
   };
 
   return (
-    <div className={cn(`w-full bg-white rounded-xl f-align gap-1.5 p-3` , className)}>
+    <div
+      className={cn(
+        `w-full bg-white rounded-xl f-align gap-1.5 p-3`,
+        className
+      )}
+    >
       <SearchIcon className="" size={20} />
       <input
         onKeyDown={handleSearch}

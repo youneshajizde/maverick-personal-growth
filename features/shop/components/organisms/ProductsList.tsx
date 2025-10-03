@@ -8,42 +8,47 @@ import Spinner from "@/shared/components/molecules/Spinner";
 import useSWR from "swr";
 import { useSearchParams } from "next/navigation";
 
-
 const ProductsList = () => {
-
- const searchParams = useSearchParams();
+  const searchParams = useSearchParams();
 
   const filters = Object.fromEntries(searchParams.entries());
 
-  const { data, isLoading } = useSWR(
-    ["products", filters],
-    () => getProducts(filters)
+  console.log("this is the filters", filters);
+  const { data, isLoading, error } = useSWR(["products", filters], () =>
+    getProducts(filters)
   );
 
-  const products = data?.data ?? [];
+  const products = data?.data;
 
-  if (!products || products.length === 0)
-    return (
-      <Placeholder className="mt-6" color="warning">
-        There is no products
-      </Placeholder>
-    );
+  console.log(products);
 
   if (isLoading) {
     return <Spinner />;
   }
 
+  if (error) {
+    <Placeholder className="mt-6" color="error">
+      Failed to load the products
+    </Placeholder>;
+  }
+
+  if (!products || products.length === 0)
+    return (
+      <Placeholder className="mt-6" color="error">
+        There is no products
+      </Placeholder>
+    );
+
   return (
     <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
-      {products?.map((p, i) => (
+      {products?.map((p) => (
         <ProductCard
-          key={i}
+          key={p.id}
           title={p.title}
           price={p.price}
           imgSrc="/images/shoe.png"
         />
       ))}
-
     </div>
   );
 };
