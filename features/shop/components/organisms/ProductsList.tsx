@@ -13,7 +13,6 @@ const ProductsList = () => {
 
   const filters = Object.fromEntries(searchParams.entries());
 
-  console.log("filters before parambuilder",filters)
   
   const { data, isLoading, error } = useSWR(["products", filters], () =>
     getProducts(filters)
@@ -21,7 +20,6 @@ const ProductsList = () => {
 
   const products = data?.data;
 
-  console.log(products);
 
   if (isLoading) {
     return <Spinner />;

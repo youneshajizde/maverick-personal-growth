@@ -47,7 +47,7 @@ const ProductsPage = async () => {
         <div className="flex flex-1 gap-3">
           <Selectbox
             className="w-full md:w-40"
-            paramKey="filters[category][name]"
+            paramKey="filters[category][name][$eq]"
             options={PRODUCTS_CATEGORIES}
           />
           <Filters/>
