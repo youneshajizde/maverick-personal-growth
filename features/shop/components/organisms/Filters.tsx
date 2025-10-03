@@ -1,18 +1,16 @@
 "use client";
 
 import { Modal } from "@/shared/components/organisms/modal";
+import { useQueryParam } from "@/shared/hooks/useParam";
 import { SlidersHorizontalIcon } from "lucide-react";
-import { useSearchParams } from "next/navigation";
 import React from "react";
 
 const Filters = () => {
-  const searchParams = useSearchParams();
-  console.log(searchParams);
-
-  const category = searchParams.get("filters[category][name][$eq]");
-
+  
+  const category = useQueryParam("filters[category][name][$eq]")
   console.log("category : ", category);
 
+  
   return (
     <Modal>
       <Modal.OpenBtn className="btn btn-white">
