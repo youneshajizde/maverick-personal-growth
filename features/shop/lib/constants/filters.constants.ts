@@ -1,6 +1,5 @@
 import { GENDER } from "@/shared/constants/shared.constants";
 
-
 export const SHOES_SIZES = [
   { value: "39", label: "39 EU" },
   { value: "40", label: "40 EU" },
@@ -11,13 +10,12 @@ export const SHOES_SIZES = [
 
 export const FILTERS_CONFIG = {
   shoes: [
-    { type: "select", options: SHOES_SIZES },
-    { type: "radio", options: GENDER },
+    { type: "select", label: "Sizes", options: SHOES_SIZES },
+    { type: "radio", label: "Gender", options: GENDER },
   ],
 
   books: [
-    { type: "select", options: [] },
-    { type: "select", options: [] },
+    { type: "select", label: "Genre", options: [] },
+    { type: "select", label: "Material", options: [] },
   ],
-} as const
- 
+};

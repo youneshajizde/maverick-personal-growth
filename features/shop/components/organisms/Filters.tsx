@@ -24,11 +24,18 @@ const Filters = () => {
           {FILTERS_CONFIG[category].map((field, i) => {
             switch (field.type) {
               case "select":
-                return <Selectbox key={i} paramKey="ntia" options={[]} />;
+                return (
+                  <Selectbox
+                    key={i}
+                    label={field.label}
+                    paramKey="filters[size][$eq]"
+                    options={field.options}
+                  />
+                );
                 break;
 
               case "radio":
-                return <Radiobtn key={i} options={[]} />;
+                return <Radiobtn label={field.label} key={i} options={field.options} />;
                 break;
             }
           })}

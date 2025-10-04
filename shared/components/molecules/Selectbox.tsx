@@ -61,7 +61,7 @@ const Selectbox = ({
 
   return (
     <>
-     {label &&  <label htmlFor="" className="font-medium">{label}</label>}
+     {label &&  <label htmlFor="" className="font-medium text-sm">{label}</label>}
       <div ref={selectRef} className={cn(`relative w-full`, className)}>
         <button
           onClick={openHandler}

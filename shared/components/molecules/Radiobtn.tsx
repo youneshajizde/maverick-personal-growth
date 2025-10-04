@@ -27,7 +27,7 @@ const Radiobtn = ({
   return (
     <>
       {label && (
-        <label htmlFor="" className="font-medium">
+        <label htmlFor="" className="font-medium text-sm">
           {label}
         </label>
       )}
