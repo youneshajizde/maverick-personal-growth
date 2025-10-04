@@ -3,15 +3,17 @@
 import { Modal } from "@/shared/components/organisms/modal";
 import { useQueryParam } from "@/shared/hooks/useParam";
 import { SlidersHorizontalIcon } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import { FILTERS_CONFIG } from "../../lib/constants/filters.constants";
 import Selectbox from "@/shared/components/molecules/Selectbox";
 import Radiobtn from "@/shared/components/molecules/Radiobtn";
 import { CategoryT } from "../../lib/types/products.types";
+import MultiSelect from "@/shared/components/molecules/MultiSelect";
 
 const Filters = () => {
-  const category = (useQueryParam("filters[category][name][$eq]") ||
-    "shoes") as CategoryT;
+  const categoryParam = useQueryParam("filters[category][name][$eq]");
+  const category = (categoryParam ?? "shoes") as CategoryT;
+  const [filters, setFilters] = useState({});
 
   return (
     <Modal>
@@ -29,14 +31,27 @@ const Filters = () => {
                     key={i}
                     label={field.label}
                     paramKey="filters[size][$eq]"
+                    onChange={()=> setFilters("")}
                     options={field.options}
                   />
                 );
                 break;
 
               case "radio":
-                return <Radiobtn label={field.label} key={i} options={field.options} />;
+                return (
+                  <Radiobtn
+                    label={field.label}
+                    key={i}
+                    options={field.options}
+                  />
+                );
                 break;
+
+
+              case "multiselect" : 
+              return (
+                <MultiSelect label="sizes" options={field.options}/>
+              )
             }
           })}
           <div className="absolute bottom-3 right-3">

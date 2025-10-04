@@ -68,7 +68,7 @@ export const navigationSections: NavigationSection[] = [
           {
             type: "Link",
             title: "Amazon",
-            url: "/dashboard/shop/products",
+            url: encodeURI("/dashboard/shop/products?filters[category][name][$eq]=books"),
             value: "products",
             icon: StoreIcon,
           },

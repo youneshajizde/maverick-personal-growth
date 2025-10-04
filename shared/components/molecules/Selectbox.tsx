@@ -1,57 +1,69 @@
 "use client";
 
-import { OptionT } from "@/shared/constants/shared.constants";
-import { cn } from "@/shared/utils/functions";
-import { ChevronDownIcon } from "lucide-react";
+import { useEffect, useState, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import React, { useEffect, useRef, useState } from "react";
+import { ChevronDownIcon } from "lucide-react";
+import { cn } from "@/shared/utils/functions";
+
+interface OptionT {
+  value: string;
+  label: string;
+}
 
 interface SelectboxProps {
   options: OptionT[];
   paramKey?: string;
   label?: string;
   className?: string;
-  value? : string
-  onChange? : () => void
-
+  value?: OptionT;
+  onChange?: () => void;
 }
 
 const Selectbox = ({
   options,
   label,
   className,
-  paramKey
-
+  paramKey,
+  value,
 }: SelectboxProps) => {
   const [open, setOpen] = useState(false);
-  const router = useRouter()
+  const [selectedItem, setSelectedItem] = useState<OptionT | null>(options[0]);
+
   const selectRef = useRef<HTMLDivElement>(null);
-  const searchParams = useSearchParams()
-  const [selectedItem, setSelectedItem] = useState(options[0]);
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
-  const openHandler = () => {
-    setOpen(!open);
-  };
 
-  const selectHandler = (option: { value: string; label: string }) => {
+  useEffect(() => {
+    const currentValue = searchParams.get(paramKey || "");
+    if (currentValue) {
+      const matchedOption = options.find((opt) => opt.value === currentValue);
+      if (matchedOption) setSelectedItem(matchedOption);
+      else setSelectedItem(options[0]); 
+    } else {
+      setSelectedItem(value ?? options[0]);
+    }
+  }, [searchParams, paramKey, options, value]);
+
+  const openHandler = () => setOpen((prev) => !prev);
+
+  const selectHandler = (option: OptionT) => {
     setSelectedItem(option);
     setOpen(false);
 
-    const params = new URLSearchParams(searchParams.toString())
+    if(onchange){
+      return
+    }
 
-    params.set(paramKey as string , option.value)
+    const params = new URLSearchParams(searchParams.toString());
+    params.set(paramKey as string, option.value);
 
-    router.push(`?${params.toString()}`)
-
+    router.push(`?${params.toString()}`);
   };
-  
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        selectRef.current &&
-        !selectRef.current.contains(event.target as Node)
-      ) {
+      if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
         setOpen(false);
       }
     };
@@ -59,16 +71,22 @@ const Selectbox = ({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  if (!selectedItem) return null;
+
   return (
     <>
-     {label &&  <label htmlFor="" className="font-medium text-sm">{label}</label>}
-      <div ref={selectRef} className={cn(`relative w-full`, className)}>
+      {label && (
+        <label htmlFor="" className="font-medium text-sm">
+          {label}
+        </label>
+      )}
+      <div ref={selectRef} className={cn("relative w-full", className)}>
         <button
           onClick={openHandler}
           className="btn btn-white f-align justify-between gap-3 w-full transition-all duration-200"
           aria-expanded={open}
         >
-          <span className="text-sm truncate">{selectedItem?.label}</span>
+          <span className="text-sm truncate">{selectedItem.label}</span>
           <ChevronDownIcon
             className={`transition-transform duration-300 ${
               open ? "rotate-180" : ""

@@ -2,7 +2,8 @@
 # searchbox work✅
 # getProducts accepts filters✅
 # selectbox with paramkey ✅
-# filters config ⏹️
+# filters config ✅
     - get the category from the url
     - have config driven way to render the filters
+# product page already selected category ✅
     

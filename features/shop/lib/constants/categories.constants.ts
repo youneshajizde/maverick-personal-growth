@@ -7,15 +7,7 @@ export const PRODUCTS_CATEGORIES = [
     value: "books",
     label: "Books",
   },
-  {
-    value: "supplements",
-
-    label: "Supplements",
-  },
-  {
-    value: "camping",
-    label: "Camping",
-  },
+ 
 ];
 
 

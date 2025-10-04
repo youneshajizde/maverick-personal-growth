@@ -8,14 +8,25 @@ export const SHOES_SIZES = [
   { value: "43", label: "43 EU" },
 ];
 
+export const BOOK_MATERIALS = [
+  { value: "bond-paper", label: "Bond Paper" },
+  { value: "glossy-paper", label: "Glossy paper" },
+];
+
+export const BOOK_GENRES = [
+  { value: "horror", label: "Horror" },
+  { value: "sci-fi", label: "Sci fi" },
+  { value: "drama", label: "Drama" },
+];
+
 export const FILTERS_CONFIG = {
   shoes: [
-    { type: "select", label: "Sizes", options: SHOES_SIZES },
+    { type: "multiselect", label: "Sizes", options: SHOES_SIZES },
     { type: "radio", label: "Gender", options: GENDER },
   ],
 
   books: [
-    { type: "select", label: "Genre", options: [] },
-    { type: "select", label: "Material", options: [] },
+    { type: "select", label: "Genre", options: BOOK_GENRES },
+    { type: "select", label: "Material", options: BOOK_MATERIALS },
   ],
 };
