@@ -11,6 +11,9 @@ interface SelectboxProps {
   paramKey?: string;
   label?: string;
   className?: string;
+  value? : string
+  onChange? : () => void
+
 }
 
 const Selectbox = ({
@@ -24,10 +27,7 @@ const Selectbox = ({
   const router = useRouter()
   const selectRef = useRef<HTMLDivElement>(null);
   const searchParams = useSearchParams()
-
   const [selectedItem, setSelectedItem] = useState(options[0]);
-
-  console.log("selected item " , selectedItem)
 
   const openHandler = () => {
     setOpen(!open);

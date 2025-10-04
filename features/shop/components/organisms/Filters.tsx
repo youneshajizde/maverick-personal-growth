@@ -4,13 +4,15 @@ import { Modal } from "@/shared/components/organisms/modal";
 import { useQueryParam } from "@/shared/hooks/useParam";
 import { SlidersHorizontalIcon } from "lucide-react";
 import React from "react";
+import { FILTERS_CONFIG } from "../../lib/constants/filters.constants";
+import Selectbox from "@/shared/components/molecules/Selectbox";
+import Radiobtn from "@/shared/components/molecules/Radiobtn";
+import { CategoryT } from "../../lib/types/products.types";
 
 const Filters = () => {
-  
-  const category = useQueryParam("filters[category][name][$eq]")
-  console.log("category : ", category);
+  const category = (useQueryParam("filters[category][name][$eq]") ||
+    "shoes") as CategoryT;
 
-  
   return (
     <Modal>
       <Modal.OpenBtn className="btn btn-white">
@@ -19,6 +21,17 @@ const Filters = () => {
       <Modal.Body className="relative bg-foreground">
         <Modal.Header>Filters</Modal.Header>
         <div className="space-y-3 mt-6">
+          {FILTERS_CONFIG[category].map((field, i) => {
+            switch (field.type) {
+              case "select":
+                return <Selectbox key={i} paramKey="ntia" options={[]} />;
+                break;
+
+              case "radio":
+                return <Radiobtn key={i} options={[]} />;
+                break;
+            }
+          })}
           <div className="absolute bottom-3 right-3">
             <button className="btn btn-secondary rounded-xl">
               Apply changes

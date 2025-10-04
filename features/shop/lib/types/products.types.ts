@@ -5,3 +5,5 @@ export type ProductT = {
     attributes : null 
     category : string
 }
+
+export type CategoryT = "shoes" | "books"
