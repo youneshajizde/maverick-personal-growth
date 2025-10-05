@@ -1,4 +1,5 @@
-import { GENDER } from "@/shared/constants/shared.constants";
+import { GENDER, OptionT } from "@/shared/constants/shared.constants";
+import { FilterComponentT, OperatorsT } from "@/shared/types/global.types";
 
 export const SHOES_SIZES = [
   { value: "39", label: "39 EU" },
@@ -19,14 +20,31 @@ export const BOOK_GENRES = [
   { value: "drama", label: "Drama" },
 ];
 
-export const FILTERS_CONFIG = {
+export type FilterFieldT = {
+  type: FilterComponentT;
+  operator: OperatorsT;
+  label: string;
+  options: OptionT[];
+};
+
+export const FILTERS_CONFIG : Record<"shoes" | "books" , FilterFieldT[]>= {
   shoes: [
-    { type: "multiselect", label: "Sizes", options: SHOES_SIZES },
-    { type: "radio", label: "Gender", options: GENDER },
+    {
+      type: "multiselect",
+      operator: "$in",
+      label: "Sizes",
+      options: SHOES_SIZES,
+    },
+    { type: "radio", operator: "$eq", label: "gender", options: GENDER },
   ],
 
   books: [
-    { type: "select", label: "Genre", options: BOOK_GENRES },
-    { type: "select", label: "Material", options: BOOK_MATERIALS },
+    { type: "select", operator: "$eq", label: "genre", options: BOOK_GENRES },
+    {
+      type: "select",
+      operator: "$eq",
+      label: "material",
+      options: BOOK_MATERIALS,
+    },
   ],
-};
+} as const;

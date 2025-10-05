@@ -9,3 +9,7 @@ export type ClassNameChildrenT = {
 export type queryParamsT = {
   [key : string] : string
 }
+
+export type OperatorsT = "$eq" | "$in" | "$contains" | "$gt" | "$lt"
+
+export type FilterComponentT = "select" | "multiselect" | "radio"

@@ -1,21 +1,44 @@
 "use client";
 
 import { Modal } from "@/shared/components/organisms/modal";
-import { useQueryParam } from "@/shared/hooks/useParam";
 import { SlidersHorizontalIcon } from "lucide-react";
 import React, { useState } from "react";
 import { FILTERS_CONFIG } from "../../lib/constants/filters.constants";
 import Selectbox from "@/shared/components/molecules/Selectbox";
 import Radiobtn from "@/shared/components/molecules/Radiobtn";
-import { CategoryT } from "../../lib/types/products.types";
 import MultiSelect from "@/shared/components/molecules/MultiSelect";
+import { CategoryT } from "../../lib/types/products.types";
+import { OperatorsT } from "@/shared/types/global.types";
+import { filterParamBuilder } from "@/shared/utils/functions";
+import { useRouter, useSearchParams } from "next/navigation";
+import { q } from "framer-motion/client";
 
-const DependantFilters = () => {
-  const categoryParam = useQueryParam("filters[category][name][$eq]");
-  const category = (categoryParam ?? "shoes") as CategoryT;
-  const [filters, setFilters] = useState({});
+const DependantFilters = ({ category }: { category: string }) => {
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  const [filters, setFilters] = useState<Record<string, {value : string , operator : OperatorsT}>>({});
 
-  
+  const handleSelectChange = (fieldLabel: string, value: string , operator : OperatorsT) => {
+    setFilters((prev) => ({
+      ...prev,
+      [fieldLabel]:{ value , operator},
+    }));
+  };
+
+  console.log(filters)
+  const handleApplyFilters = () => {
+    const params =  new URLSearchParams()
+
+    Object.entries(filters).forEach(([key , {value , operator}]) => {
+        filterParamBuilder(params , operator , key , value)
+    })
+
+    const queryString = params.toString()
+
+    router.push(`?${queryString}`)
+
+
+  }
 
   return (
     <Modal>
@@ -25,13 +48,13 @@ const DependantFilters = () => {
       <Modal.Body className="relative bg-foreground">
         <Modal.Header>Filters</Modal.Header>
         <div className="space-y-3 mt-6">
-          {FILTERS_CONFIG[category].map((field, i) => {
+          {FILTERS_CONFIG[category as CategoryT].map((field, i) => {
             switch (field.type) {
               case "select":
                 return (
                   <Selectbox
-                    value="shoes"
-                    onChange={setFilters}
+                    value={filters[field.label] || ""}
+                    onChange={(val) => handleSelectChange(field.label, val , field.operator)}
                     key={i}
                     label={field.label}
                     options={field.options}
@@ -56,7 +79,7 @@ const DependantFilters = () => {
             }
           })}
           <div className="absolute bottom-3 right-3">
-            <button className="btn btn-secondary rounded-xl">
+            <button onClick={handleApplyFilters} className="btn btn-secondary rounded-xl">
               Apply changes
             </button>
           </div>

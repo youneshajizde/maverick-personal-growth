@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { queryParamsT } from "../types/global.types";
+import { OperatorsT, queryParamsT } from "../types/global.types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -42,16 +42,24 @@ export const safeFetch = async <T>(
   }
 };
 
-
-
 export const paramBuilder = (paramObj: Record<string, string>) => {
-const params = new URLSearchParams()
+  const params = new URLSearchParams();
   for (const key in paramObj) {
-    params.set(key , paramObj[key])
+    params.set(key, paramObj[key]);
   }
-  const queryString = `?${params.toString()}`
-  return queryString
+  const queryString = `?${params.toString()}`;
+  return queryString;
 };
 
-
-
+export const filterParamBuilder = (
+  params: URLSearchParams,
+  operator: OperatorsT,
+  key: string,
+  value: string | string[]
+) => {
+  if (Array.isArray(value)) {
+    params.append(`filters[${key}][${operator}]`, value.join(","));
+  } else {
+    params.append(`filters[${key}][${operator}]`, value);
+  }
+};

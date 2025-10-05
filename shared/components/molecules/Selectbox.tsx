@@ -13,7 +13,7 @@ interface SelectboxProps {
   options: OptionT[];
   label?: string;
   className?: string;
-  value: string; // we store the "value" only
+  value: string; 
   onChange: (val: string) => void;
 }
 
@@ -30,7 +30,6 @@ const Selectbox = ({ options, label, className, value, onChange }: SelectboxProp
     setOpen(false);
   };
 
-  // Close when clicking outside
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (selectRef.current && !selectRef.current.contains(e.target as Node)) {
