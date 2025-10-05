@@ -1,8 +1,5 @@
 import Filters from "@/features/shop/components/organisms/Filters";
 import ProductsList from "@/features/shop/components/organisms/ProductsList";
-import { PRODUCTS_CATEGORIES } from "@/features/shop/lib/constants/categories.constants";
-import Searchbox from "@/shared/components/molecules/Searchbox";
-import Selectbox from "@/shared/components/molecules/Selectbox";
 import Spinner from "@/shared/components/molecules/Spinner";
 import { EllipsisVerticalIcon } from "lucide-react";
 import Image from "next/image";
@@ -42,17 +39,7 @@ const ProductsPage = async () => {
         </div>
       </div>
 
-      <div className="w-full flex flex-col md:flex-row gap-3">
-        <Searchbox searchIn="title" className="w-full md:w-80 " />
-        <div className="flex flex-1 gap-3">
-          <Selectbox
-            className="w-full md:w-40"
-            paramKey="filters[category][name][$eq]"
-            options={PRODUCTS_CATEGORIES}
-          />
-          <Filters/>
-        </div>
-      </div>
+      <Filters />
 
       <p className="mt-6 space-x-1.5">
         <span className="text-xl ">Books</span>

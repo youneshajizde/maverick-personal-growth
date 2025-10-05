@@ -9,6 +9,7 @@ interface MultiSelectProps {
   label?: string;
   options: OptionT[];
   className?: string;
+  onChange?: (val: string) => void;
 }
 
 const MultiSelect = ({ label, options, className }: MultiSelectProps) => {
@@ -34,13 +35,13 @@ const MultiSelect = ({ label, options, className }: MultiSelectProps) => {
   const multiSelectHandler = (item: string) => {
     setSelectedItems((prev) => {
       if (prev.includes(item)) {
-        return prev
+        return prev;
       }
       return [...prev, item];
     });
 
-    if(selectedItems.includes(item)) {
-        setSelectedItems((prev) => selectedItems.filter((si) => si !== item))
+    if (selectedItems.includes(item)) {
+      setSelectedItems((prev) => selectedItems.filter((si) => si !== item));
     }
   };
 
@@ -58,7 +59,11 @@ const MultiSelect = ({ label, options, className }: MultiSelectProps) => {
             label && "mt-1.5"
           }`}
         >
-          <span>something</span>
+          <span className="truncate">
+            {selectedItems.length !== 0
+              ? selectedItems.join(" , ")
+              : "Please select"}
+          </span>
           <ChevronDownIcon
             className={`transition-transform duration-300 ${
               open ? "rotate-180" : ""
@@ -69,14 +74,16 @@ const MultiSelect = ({ label, options, className }: MultiSelectProps) => {
 
         <ul
           className={`absolute top-full mt-1 w-full bg-white rounded-xl border border-gray-200 shadow-lg p-3 z-30 max-h-60 overflow-auto space-y-1 transition-all duration-200 ease-in-out ${
-            open ? "opacity-100 -translate-y-0" : "opacity-0 translate-y-2"
+            open ? "opacity-100 -translate-y-2 pointer-events-auto" : "opacity-0 translate-y-0 pointer-events-none"
           }`}
         >
           {options?.map((opt, i) => (
             <li
-
               onClick={() => multiSelectHandler(opt.value)}
-              className={`cursor-pointer px-3 py-2 truncate text-sm text-gray-700 rounded-lg transition-colors duration-150 hover:bg-gray-100 ${selectedItems.includes(opt.value) && "bg-secondary text-white hover:bg-secondary"}`}
+              className={`cursor-pointer px-3 py-2 truncate text-sm text-gray-700 rounded-lg transition-colors duration-150 hover:bg-gray-100 ${
+                selectedItems.includes(opt.value) &&
+                "bg-secondary text-white hover:bg-secondary"
+              }`}
               key={i}
             >
               {opt.value}

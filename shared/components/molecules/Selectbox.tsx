@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import { ChevronDownIcon } from "lucide-react";
 import { cn } from "@/shared/utils/functions";
 
@@ -12,58 +11,29 @@ interface OptionT {
 
 interface SelectboxProps {
   options: OptionT[];
-  paramKey?: string;
   label?: string;
   className?: string;
-  value?: OptionT;
-  onChange?: () => void;
+  value: string; // we store the "value" only
+  onChange: (val: string) => void;
 }
 
-const Selectbox = ({
-  options,
-  label,
-  className,
-  paramKey,
-  value,
-}: SelectboxProps) => {
+const Selectbox = ({ options, label, className, value, onChange }: SelectboxProps) => {
   const [open, setOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<OptionT | null>(options[0]);
-
   const selectRef = useRef<HTMLDivElement>(null);
-  const router = useRouter();
-  const searchParams = useSearchParams();
 
+  const selectedOption = options.find((opt) => opt.value === value);
 
-  useEffect(() => {
-    const currentValue = searchParams.get(paramKey || "");
-    if (currentValue) {
-      const matchedOption = options.find((opt) => opt.value === currentValue);
-      if (matchedOption) setSelectedItem(matchedOption);
-      else setSelectedItem(options[0]); 
-    } else {
-      setSelectedItem(value ?? options[0]);
-    }
-  }, [searchParams, paramKey, options, value]);
+  const toggleOpen = () => setOpen((prev) => !prev);
 
-  const openHandler = () => setOpen((prev) => !prev);
-
-  const selectHandler = (option: OptionT) => {
-    setSelectedItem(option);
+  const handleSelect = (option: OptionT) => {
+    onChange(option.value);
     setOpen(false);
-
-    if(onchange){
-      return
-    }
-
-    const params = new URLSearchParams(searchParams.toString());
-    params.set(paramKey as string, option.value);
-
-    router.push(`?${params.toString()}`);
   };
 
+  // Close when clicking outside
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (selectRef.current && !selectRef.current.contains(e.target as Node)) {
         setOpen(false);
       }
     };
@@ -71,55 +41,45 @@ const Selectbox = ({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  if (!selectedItem) return null;
-
   return (
-    <>
-      {label && (
-        <label htmlFor="" className="font-medium text-sm">
-          {label}
-        </label>
-      )}
-      <div ref={selectRef} className={cn("relative w-full", className)}>
-        <button
-          onClick={openHandler}
-          className="btn btn-white f-align justify-between gap-3 w-full transition-all duration-200"
-          aria-expanded={open}
-        >
-          <span className="text-sm truncate">{selectedItem.label}</span>
-          <ChevronDownIcon
-            className={`transition-transform duration-300 ${
-              open ? "rotate-180" : ""
-            }`}
-            size={17}
-          />
-        </button>
+    <div className={cn("relative w-full", className)} ref={selectRef}>
+      {label && <label className="font-medium text-sm mb-1 block">{label}</label>}
 
-        <ul
-          className={`absolute top-full mt-1 w-full bg-white rounded-xl border border-gray-200 shadow-lg p-3 z-30 max-h-60 overflow-auto space-y-1 transition-all duration-200 ease-in-out ${
-            open
-              ? "opacity-100 translate-y-0 pointer-events-auto"
-              : "opacity-0 -translate-y-2 pointer-events-none"
-          }`}
-        >
-          {options.map((option, i) => (
-            <li
-              key={i}
-              className={`cursor-pointer px-3 py-2 truncate text-sm text-gray-700 rounded-lg transition-colors duration-150 hover:bg-gray-100 ${
-                selectedItem.value === option.value
-                  ? "bg-secondary text-white hover:bg-opacity-90"
-                  : ""
-              }`}
-              onClick={() => selectHandler(option)}
-              role="option"
-              aria-selected={selectedItem.value === option.value}
-            >
-              {option.label}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </>
+      <button
+        onClick={toggleOpen}
+        className="btn btn-white f-align justify-between gap-3 w-full transition-all duration-200"
+        aria-expanded={open}
+      >
+        <span className="text-sm truncate">
+          {selectedOption ? selectedOption.label : "Select..."}
+        </span>
+        <ChevronDownIcon
+          className={`transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+          size={17}
+        />
+      </button>
+
+      <ul
+        className={`absolute top-full mt-1 w-full bg-white rounded-xl border border-gray-200 shadow-lg p-3 z-30 max-h-60 overflow-auto space-y-1 transition-all duration-200 ease-in-out ${
+          open
+            ? "opacity-100 translate-y-0 pointer-events-auto"
+            : "opacity-0 -translate-y-2 pointer-events-none"
+        }`}
+      >
+        {options.map((option) => (
+          <li
+            key={option.value}
+            onClick={() => handleSelect(option)}
+            className={cn(
+              "cursor-pointer px-3 py-2 truncate text-sm text-gray-700 rounded-lg transition-colors duration-150 hover:bg-gray-100",
+              value === option.value && "bg-secondary text-white hover:bg-opacity-90"
+            )}
+          >
+            {option.label}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 

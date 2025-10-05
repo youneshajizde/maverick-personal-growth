@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import ProductCard from "./ProductCard";
 import Placeholder from "@/shared/components/atoms/Placeholder";
 import { getProducts } from "../../lib/api/products";
@@ -10,10 +10,8 @@ import { useSearchParams } from "next/navigation";
 
 const ProductsList = () => {
   const searchParams = useSearchParams();
-
   const filters = Object.fromEntries(searchParams.entries());
 
-  
   const { data, isLoading, error } = useSWR(["products", filters], () =>
     getProducts(filters)
   );
