@@ -11,34 +11,34 @@ import { CategoryT } from "../../lib/types/products.types";
 import { OperatorsT } from "@/shared/types/global.types";
 import { filterParamBuilder } from "@/shared/utils/functions";
 import { useRouter, useSearchParams } from "next/navigation";
-import { q } from "framer-motion/client";
 
 const DependantFilters = ({ category }: { category: string }) => {
-  const searchParams = useSearchParams()
-  const router = useRouter()
-  const [filters, setFilters] = useState<Record<string, {value : string , operator : OperatorsT}>>({});
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const [filters, setFilters] = useState<
+    Record<string, { value: string; operator: OperatorsT }>
+  >({});
 
-  const handleSelectChange = (fieldLabel: string, value: string , operator : OperatorsT) => {
+  const handleSelectChange = (
+    fieldLabel: string,
+    value: string,
+    operator: OperatorsT
+  ) => {
     setFilters((prev) => ({
       ...prev,
-      [fieldLabel]:{ value , operator},
+      [fieldLabel]: { value, operator },
     }));
   };
 
-  console.log(filters)
   const handleApplyFilters = () => {
-    const params =  new URLSearchParams()
+    const params = new URLSearchParams(searchParams);
 
-    Object.entries(filters).forEach(([key , {value , operator}]) => {
-        filterParamBuilder(params , operator , key , value)
-    })
-
-    const queryString = params.toString()
-
-    router.push(`?${queryString}`)
-
-
-  }
+    Object.entries(filters).forEach(([key, { value, operator }]) => {
+      filterParamBuilder(params, operator, key, value);
+    });
+    const queryString = params.toString();
+    router.push(`?${queryString}`);
+  };
 
   return (
     <Modal>
@@ -54,7 +54,9 @@ const DependantFilters = ({ category }: { category: string }) => {
                 return (
                   <Selectbox
                     value={filters[field.label] || ""}
-                    onChange={(val) => handleSelectChange(field.label, val , field.operator)}
+                    onChange={(val) =>
+                      handleSelectChange(field.label, val, field.operator)
+                    }
                     key={i}
                     label={field.label}
                     options={field.options}
@@ -79,7 +81,10 @@ const DependantFilters = ({ category }: { category: string }) => {
             }
           })}
           <div className="absolute bottom-3 right-3">
-            <button onClick={handleApplyFilters} className="btn btn-secondary rounded-xl">
+            <button
+              onClick={handleApplyFilters}
+              className="btn btn-secondary rounded-xl"
+            >
               Apply changes
             </button>
           </div>
