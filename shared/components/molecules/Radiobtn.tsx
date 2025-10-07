@@ -6,8 +6,8 @@ interface RadioBtnProps {
   options: { value: string; label: string }[];
   className?: string;
   label?: string;
-  value?: string;
-  onChange?: (value: string) => void;
+  value: string;
+  onChange: (value: string) => void;
 }
 
 const Radiobtn = ({
@@ -21,7 +21,7 @@ const Radiobtn = ({
 
   const handleSelect = (val: string) => {
     setSelected(val);
-    onChange?.(val);
+    onChange(val);
   };
 
   return (

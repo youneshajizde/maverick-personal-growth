@@ -67,6 +67,10 @@ const DependantFilters = ({ category }: { category: string }) => {
               case "radio":
                 return (
                   <Radiobtn
+                    value={filters[field.label]?.value || ""}
+                    onChange={(val) =>
+                      handleSelectChange(field.label, val, field.operator)
+                    }
                     label={field.label}
                     key={i}
                     options={field.options}
