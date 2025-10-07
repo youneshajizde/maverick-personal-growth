@@ -14,7 +14,7 @@ const Input = ({label , id , className, error , ...props} : InputProps) => {
             {label}
         </label>
 
-        <input id={id} {...props} className={cn('rounded-xl border text-sm outline-none focus:ring-1 focus:ring-secondary border-black/30 placeholder:text-sm placeholder:text-black/30 p-3', className )}/>
+        <input id={id} {...props} className={cn('rounded-xl border text-sm outline-none focus:ring-1 focus:ring-secondary border-black/15 placeholder:text-sm placeholder:text-black/30 p-3', className )}/>
 
         {error && <span className='text-danger text-sm'>{error}</span>}
     </div>
