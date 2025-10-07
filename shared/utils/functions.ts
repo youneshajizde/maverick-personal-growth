@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { OperatorsT, queryParamsT } from "../types/global.types";
+import { OperatorsT } from "../types/global.types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

@@ -31,7 +31,7 @@ const DependantFilters = ({ category }: { category: string }) => {
   };
 
   const handleApplyFilters = () => {
-    const params = new URLSearchParams(searchParams);
+    const params = new URLSearchParams(searchParams.toString());
 
     Object.entries(filters).forEach(([key, { value, operator }]) => {
       filterParamBuilder(params, operator, key, value);
