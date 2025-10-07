@@ -65,7 +65,6 @@ const DependantFilters = ({ category }: { category: string }) => {
                     options={field.options}
                   />
                 );
-                break;
 
               case "radio":
                 return (
@@ -75,7 +74,6 @@ const DependantFilters = ({ category }: { category: string }) => {
                     options={field.options}
                   />
                 );
-                break;
 
               case "multiselect":
                 return (
