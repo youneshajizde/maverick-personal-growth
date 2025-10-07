@@ -45,7 +45,7 @@ body {
 }
 
 @utility btn {
-  @apply text-sm p-3 rounded-xl text-white bg-secondary;
+  @apply text-sm p-3 rounded-xl text-white bg-secondary cursor-pointer;
 }
 
 @utility btn-primary {

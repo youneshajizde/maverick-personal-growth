@@ -1,17 +1,15 @@
 import {
   EllipsisVerticalIcon,
   MapPinIcon,
-  MessageCircleMoreIcon,
-  SearchIcon,
   SendHorizonalIcon,
-  SendIcon,
 } from "lucide-react";
 import Image from "next/image";
 import React from "react";
-import Selectbox from "@/shared/components/molecules/Selectbox";
+// import Selectbox from "@/shared/components/molecules/Selectbox";
 import Searchbox from "@/shared/components/molecules/Searchbox";
-import { COACHES_CATEGORIES } from "@/features/coaches/constants/categories.constants";
+// import { COACHES_CATEGORIES } from "@/features/coaches/constants/categories.constants";
 import Badge from "@/shared/components/atoms/Badge";
+import { Pagination } from "@/shared/components/organisms/pagination";
 
 const CoachesPage = () => {
   return (
@@ -46,8 +44,8 @@ const CoachesPage = () => {
       </div>
 
       <div className="max-w-xl f-align gap-3">
-        <Searchbox />
-        <Selectbox paramKey="category" options={COACHES_CATEGORIES} />
+        <Searchbox searchIn="name" />
+        {/* <Selectbox  options={COACHES_CATEGORIES} /> */}
       </div>
 
       <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
@@ -93,19 +91,31 @@ const CoachesPage = () => {
                 </span>
               </p>
               <ul className="flex gap-3 text-sm">
-                <Badge variant="info">
-                  UI/UX
-                </Badge>
-                <Badge variant="info" className="bg-foreground inline-block rounded-lg px-1.5 py-1">
+                <Badge variant="info">UI/UX</Badge>
+                <Badge
+                  variant="info"
+                  className="bg-foreground inline-block rounded-lg px-1.5 py-1"
+                >
                   Motion
                 </Badge>
-                <Badge variant="info" className="bg-foreground inline-block rounded-lg px-1.5 py-1">
+                <Badge
+                  variant="info"
+                  className="bg-foreground inline-block rounded-lg px-1.5 py-1"
+                >
                   Illustrator
                 </Badge>
               </ul>
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="f-center w-full gap-3">
+        <Pagination totalPages={10}>
+          <Pagination.Prev />
+          <Pagination.Pages />
+          <Pagination.Next />
+        </Pagination>
       </div>
     </>
   );
