@@ -38,6 +38,7 @@ const DependantFilters = ({ category }: { category: string }) => {
     });
     const queryString = params.toString();
     router.push(`?${queryString}`);
+    setFilters({})
   };
 
 
