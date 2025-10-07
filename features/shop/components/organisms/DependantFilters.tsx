@@ -40,6 +40,8 @@ const DependantFilters = ({ category }: { category: string }) => {
     router.push(`?${queryString}`);
   };
 
+
+
   return (
     <Modal>
       <Modal.OpenBtn className="btn btn-white">
@@ -53,7 +55,7 @@ const DependantFilters = ({ category }: { category: string }) => {
               case "select":
                 return (
                   <Selectbox
-                    value={filters[field.label] || ""}
+                    value={filters[field.label]?.value || ""}
                     onChange={(val) =>
                       handleSelectChange(field.label, val, field.operator)
                     }
