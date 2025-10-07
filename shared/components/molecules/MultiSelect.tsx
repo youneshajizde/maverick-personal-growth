@@ -9,45 +9,34 @@ interface MultiSelectProps {
   label?: string;
   options: OptionT[];
   className?: string;
-  onChange?: (val: string) => void;
+  value: string[];
+  onChange: (val: string[]) => void; 
 }
 
-const MultiSelect = ({ label, options, className }: MultiSelectProps) => {
+const MultiSelect = ({ label, options, className, value, onChange }: MultiSelectProps) => {
   const [open, setOpen] = useState(false);
-  const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const selectRef = useRef<HTMLDivElement>(null);
-  console.log("this is multiselect bitch : ", selectedItems);
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        selectRef.current &&
-        !selectRef.current.contains(event.target as Node)
-      ) {
+      if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
         setOpen(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
-
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const multiSelectHandler = (item: string) => {
-    setSelectedItems((prev) => {
-      if (prev.includes(item)) {
-        return prev;
-      }
-      return [...prev, item];
-    });
-
-    if (selectedItems.includes(item)) {
-      setSelectedItems((prev) => selectedItems.filter((si) => si !== item));
+    if (value.includes(item)) {
+      onChange(value.filter((v) => v !== item));
+    } else {
+      onChange([...value, item]);
     }
   };
 
-  const openHandler = () => {
-    setOpen((prev) => !prev);
-  };
+  const openHandler = () => setOpen((prev) => !prev);
+
   return (
     <>
       {label && <label className="font-medium text-sm">{label}</label>}
@@ -59,17 +48,8 @@ const MultiSelect = ({ label, options, className }: MultiSelectProps) => {
             label && "mt-1.5"
           }`}
         >
-          <span className="truncate">
-            {selectedItems.length !== 0
-              ? selectedItems.join(" , ")
-              : "Please select"}
-          </span>
-          <ChevronDownIcon
-            className={`transition-transform duration-300 ${
-              open ? "rotate-180" : ""
-            }`}
-            size={17}
-          />
+          <span className="truncate">{value.length ? value.join(" , ") : "Please select"}</span>
+          <ChevronDownIcon className={`transition-transform duration-300 ${open ? "rotate-180" : ""}`} size={17} />
         </button>
 
         <ul
@@ -77,14 +57,13 @@ const MultiSelect = ({ label, options, className }: MultiSelectProps) => {
             open ? "opacity-100 -translate-y-2 pointer-events-auto" : "opacity-0 translate-y-0 pointer-events-none"
           }`}
         >
-          {options?.map((opt, i) => (
+          {options.map((opt, i) => (
             <li
+              key={i}
               onClick={() => multiSelectHandler(opt.value)}
               className={`cursor-pointer px-3 py-2 truncate text-sm text-gray-700 rounded-lg transition-colors duration-150 hover:bg-gray-100 ${
-                selectedItems.includes(opt.value) &&
-                "bg-secondary text-white hover:bg-secondary"
+                value.includes(opt.value) && "bg-secondary text-white hover:bg-secondary"
               }`}
-              key={i}
             >
               {opt.value}
             </li>

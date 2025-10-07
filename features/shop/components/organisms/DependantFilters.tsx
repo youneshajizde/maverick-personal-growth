@@ -38,10 +38,8 @@ const DependantFilters = ({ category }: { category: string }) => {
     });
     const queryString = params.toString();
     router.push(`?${queryString}`);
-    setFilters({})
+    setFilters({});
   };
-
-
 
   return (
     <Modal>
@@ -77,7 +75,19 @@ const DependantFilters = ({ category }: { category: string }) => {
 
               case "multiselect":
                 return (
-                  <MultiSelect key={i} label="sizes" options={field.options} />
+                  <MultiSelect
+                    value={filters[field.label]?.value?.split(",") || []}
+                    onChange={(vals) =>
+                      handleSelectChange(
+                        field.label,
+                        vals.join(","),
+                        field.operator
+                      )
+                    }
+                    key={i}
+                    label={field.label}
+                    options={field.options}
+                  />
                 );
             }
           })}

@@ -32,7 +32,7 @@ export const FILTERS_CONFIG : Record<"shoes" | "books" , FilterFieldT[]>= {
     {
       type: "multiselect",
       operator: "$in",
-      label: "Sizes",
+      label: "sizes",
       options: SHOES_SIZES,
     },
     { type: "radio", operator: "$eq", label: "gender", options: GENDER },
