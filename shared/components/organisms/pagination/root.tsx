@@ -5,6 +5,7 @@ import React, { createContext, ReactNode, useContext, useState } from "react";
 interface PaginationContextProps {
   currentPage: number;
   setCurrentPage: (page: number) => void;
+  onChange: (page: number) => void;
   totalPages: number;
   hasPrev: boolean;
   hasNext: boolean;
@@ -25,19 +26,31 @@ export const usePagination = () => {
 const PaginationRoot = ({
   children,
   totalPages,
+  onChange,
 }: {
   children: ReactNode;
   totalPages: number;
+  onChange: (page: number) => void;
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const hasPrev = currentPage > 1;
   const hasNext = currentPage < totalPages;
 
-  console.log(currentPage)
+  const handleSetCurrentPage = (page: number) => {
+    setCurrentPage(page);
+    onChange?.(page); // call parent callback
+  };
 
   return (
     <PaginationContext.Provider
-      value={{ currentPage, setCurrentPage, hasNext, hasPrev, totalPages }}
+      value={{
+        currentPage,
+        setCurrentPage: handleSetCurrentPage,
+        hasNext,
+        hasPrev,
+        totalPages,
+        onChange,
+      }}
     >
       {children}
     </PaginationContext.Provider>
