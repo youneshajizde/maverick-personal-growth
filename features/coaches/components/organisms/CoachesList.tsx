@@ -7,7 +7,8 @@ import Image from "next/image";
 import React, { useState } from "react";
 
 const CoachesList = () => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
   return (
     <>
       <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
@@ -72,8 +73,12 @@ const CoachesList = () => {
         ))}
       </div>
 
-      <div className="f-center w-full gap-3">
-        <Pagination  totalPages={10}>
+      <div className="f-center w-full gap-3 mt-6">
+        <Pagination
+          currentPage={currentPage}
+          onChange={setCurrentPage}
+          totalPages={10}
+        >
           <Pagination.Prev />
           <Pagination.Pages />
           <Pagination.Next />

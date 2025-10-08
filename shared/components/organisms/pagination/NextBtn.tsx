@@ -6,11 +6,11 @@ import { usePagination } from "./root";
 import { ChevronRightIcon } from "lucide-react";
 
 const NextBtn = ({ className }: { className?: string }) => {
-  const { setCurrentPage, currentPage, hasNext } = usePagination();
+  const { goToPage, currentPage, hasNext } = usePagination();
   return (
     <button
       disabled={!hasNext}
-      onClick={() => setCurrentPage(currentPage + 1)}
+      onClick={() => goToPage(currentPage + 1)}
       className={cn(
         `btn p-0 btn-round size-10 f-center ${!hasNext ? "bg-gray-300" : "btn-primary"}`,
         className

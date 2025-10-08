@@ -1,11 +1,10 @@
 "use client";
 
-import React, { createContext, ReactNode, useContext, useState } from "react";
+import React, { createContext, ReactNode, useContext } from "react";
 
 interface PaginationContextProps {
   currentPage: number;
-  setCurrentPage: (page: number) => void;
-  onChange: (page: number) => void;
+  goToPage: (page: number) => void;
   totalPages: number;
   hasPrev: boolean;
   hasNext: boolean;
@@ -27,29 +26,30 @@ const PaginationRoot = ({
   children,
   totalPages,
   onChange,
+  currentPage
 }: {
   children: ReactNode;
   totalPages: number;
   onChange: (page: number) => void;
+  currentPage : number
 }) => {
-  const [currentPage, setCurrentPage] = useState(1);
   const hasPrev = currentPage > 1;
   const hasNext = currentPage < totalPages;
 
   const handleSetCurrentPage = (page: number) => {
-    setCurrentPage(page);
-    onChange?.(page); // call parent callback
+    onChange(page);
   };
+
+  
 
   return (
     <PaginationContext.Provider
       value={{
         currentPage,
-        setCurrentPage: handleSetCurrentPage,
+        goToPage: handleSetCurrentPage,
         hasNext,
         hasPrev,
         totalPages,
-        onChange,
       }}
     >
       {children}

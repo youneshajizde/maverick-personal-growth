@@ -6,11 +6,11 @@ import React from "react";
 import { usePagination } from "./root";
 
 const PrevBtn = ({ className }: { className?: string }) => {
-  const { setCurrentPage, currentPage, hasPrev } = usePagination();
+  const { goToPage, currentPage, hasPrev } = usePagination();
   return (
     <button
       disabled={!hasPrev}
-      onClick={() => setCurrentPage(currentPage - 1)}
+      onClick={() => goToPage(currentPage - 1)}
       className={cn(
         `btn p-0 btn-round size-10 f-center ${
           !hasPrev ? "bg-gray-300" : "btn-primary"

@@ -24,7 +24,7 @@ const RegisterPage = () => {
               Click here
             </Link>
           </p>
-          <button className="btn btn-xl btn-accept w-full">Register</button>
+          <button className="btn btn-xl btn-primary w-full">Register</button>
         </div>
       </div>
     </>

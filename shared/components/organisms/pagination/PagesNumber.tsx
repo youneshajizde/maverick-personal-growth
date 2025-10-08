@@ -4,7 +4,7 @@ import React from "react";
 import { usePagination } from "./root";
 
 const PagesNumber = () => {
-  const { currentPage, setCurrentPage, totalPages } = usePagination();
+  const { currentPage, goToPage, totalPages } = usePagination();
   const visiblePages = 4;
   let startPage = Math.max(1, currentPage - 1);
   const endPage = Math.min(totalPages, startPage + visiblePages - 1);
@@ -22,7 +22,7 @@ const PagesNumber = () => {
         <button
           key={page}
           disabled={page === currentPage}
-          onClick={() => setCurrentPage(page)}
+          onClick={() => goToPage(page)}
           className={`btn btn-round size-10 ${page === currentPage ? "btn-primary" : "btn-secondary"}`}
         >
           {page}
