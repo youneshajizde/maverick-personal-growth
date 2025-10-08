@@ -1,13 +1,18 @@
 "use client";
 
+import { getCoaches } from "@/features/shop/lib/api/products";
 import Badge from "@/shared/components/atoms/Badge";
 import { Pagination } from "@/shared/components/organisms/pagination";
 import { MapPinIcon, SendHorizonalIcon } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
+import useSWR from "swr";
 
 const CoachesList = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
+
+  const {data , isLoading , error} = useSWR(["coaches" , currentPage] , () => getCoaches())
+
 
   return (
     <>
