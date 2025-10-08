@@ -12,11 +12,13 @@ const ProductsList = () => {
   const searchParams = useSearchParams();
   const filters = Object.fromEntries(searchParams.entries());
 
-  const { data, isLoading, error } = useSWR(["products", filters], () =>
+  const { data : product, isLoading, error } = useSWR(["products", filters], () =>
     getProducts(filters)
   );
 
-  const products = data?.data;
+  const products = product?.data?.data;
+
+  console.log(product?.data)
 
 
   if (isLoading) {

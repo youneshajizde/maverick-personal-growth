@@ -13,3 +13,15 @@ export type queryParamsT = {
 export type OperatorsT = "$eq" | "$in" | "$contains" | "$gt" | "$lt"
 
 export type FilterComponentT = "select" | "multiselect" | "radio"
+
+export type StrapiResponse<T> = {
+  data: T;
+  meta: {
+    pagination?: {
+      page: number;
+      pageSize: number;
+      pageCount: number;
+      total: number;
+    };
+  };
+}

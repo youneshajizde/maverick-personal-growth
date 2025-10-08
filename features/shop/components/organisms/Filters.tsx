@@ -9,13 +9,13 @@ import { useQueryParam } from "@/shared/hooks/useParam";
 import { useRouter } from "next/navigation";
 
 const Filters = () => {
-  const initialCategory = useQueryParam("filters[category][$eq]") || "books";
+  const initialCategory = useQueryParam("filters[category][name][$eq]") || "books";
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
   const router = useRouter();
 
   useEffect(() => {
     const params = new URLSearchParams();
-    params.set("filters[category][$eq]", selectedCategory);
+    params.set("filters[category][name][$eq]", selectedCategory);
     router.push(`?${params.toString()}`);
   }, [selectedCategory, router]);
 
