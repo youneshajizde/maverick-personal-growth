@@ -18,7 +18,7 @@ const CoachesList = () => {
     router.push(`?page=${newPage}`);
   };
 
-  const { data: coaches, error } = useSWR(["coaches", page], () =>
+  const { data: coaches } = useSWR(["coaches", page], () =>
     getCoaches(page, 9)
   );
   console.log(coaches?.data?.data);

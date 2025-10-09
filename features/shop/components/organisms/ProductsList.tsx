@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import ProductCard from "./ProductCard";
 import Placeholder from "@/shared/components/atoms/Placeholder";
 import { getProducts } from "../../lib/api/products";

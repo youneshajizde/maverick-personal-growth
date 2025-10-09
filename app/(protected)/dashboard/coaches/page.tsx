@@ -1,15 +1,11 @@
 import {
   EllipsisVerticalIcon,
-  MapPinIcon,
-  SendHorizonalIcon,
 } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 // import Selectbox from "@/shared/components/molecules/Selectbox";
 import Searchbox from "@/shared/components/molecules/Searchbox";
 // import { COACHES_CATEGORIES } from "@/features/coaches/constants/categories.constants";
-import Badge from "@/shared/components/atoms/Badge";
-import { Pagination } from "@/shared/components/organisms/pagination";
 import CoachesList from "@/features/coaches/components/organisms/CoachesList";
 
 const CoachesPage = () => {
