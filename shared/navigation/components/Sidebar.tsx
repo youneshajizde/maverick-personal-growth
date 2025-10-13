@@ -57,7 +57,7 @@ const Sidebar = () => {
           {navigationSections.map((section, index) => (
             <React.Fragment key={index}>
               <p className="text-black/30 text-xs mt-3">{section.label}</p>
-              <ul className="flex flex-col items-center lg:items-stretch w-full space-y-1.5 mt-3">
+              <ul className="flex flex-col **:text-xs items-center lg:items-stretch w-full space-y-1.5 mt-3">
                 {section.items.map((item) => (
                   <li key={item.value}>
                     {renderSidebarTabs(item, currentTab)}

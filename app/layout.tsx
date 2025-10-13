@@ -6,6 +6,8 @@ import { ToastProvider } from "@/shared/components/organisms/toast/ToastProvider
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+  display: "swap",
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {

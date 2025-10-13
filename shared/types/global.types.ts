@@ -5,14 +5,13 @@ export type ClassNameChildrenT = {
   className?: string;
 };
 
-
 export type queryParamsT = {
-  [key : string] : string
-}
+  [key: string]: string;
+};
 
-export type OperatorsT = "$eq" | "$in" | "$contains" | "$gt" | "$lt"
+export type OperatorsT = "$eq" | "$in" | "$contains" | "$gt" | "$lt";
 
-export type FilterComponentT = "select" | "multiselect" | "radio"
+export type FilterComponentT = "select" | "multiselect" | "radio";
 
 export type StrapiResponse<T> = {
   data: T;
@@ -24,4 +23,15 @@ export type StrapiResponse<T> = {
       total: number;
     };
   };
-}
+};
+
+export type AuthT = {
+  jwt: string;
+  user: {
+    id: number;
+    username: string;
+    email: string;
+    confirmed: boolean;
+    blocked: boolean;
+  };
+};
