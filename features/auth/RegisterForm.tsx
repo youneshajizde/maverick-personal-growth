@@ -4,24 +4,25 @@ import { submitAuth } from "@/shared/actions/auth.actions";
 import Input from "@/shared/components/molecules/Input";
 import { useToast } from "@/shared/components/organisms/toast/ToastContext";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const RegisterForm = () => {
-      const { addToast } = useToast();
-    
-  return (
-    <form
-      action={async (fd) => {
-        
-        const res = await submitAuth(fd);
+  const router = useRouter();
+  const { addToast } = useToast();
+  async function handleSubmit(fd: FormData) {
+    const res = await submitAuth(fd);
 
-        if (!res.success) {
-          addToast("it failed nigga" , "error");
-        }
-          addToast("it succeeded nigga" , "success");
-      }}
-      className=" space-y-6 mt-6"
-    >
+    if (!res.success) {
+      addToast("Registration failed!", "error");
+      return;
+    }
+
+    addToast("Registration succeeded!", "success");
+    router.push("/dashboard/profile");
+  }
+  return (
+    <form action={handleSubmit} className=" space-y-6 mt-6">
       <Input name="username" label="Username" placeholder="Younes hajizade" />
 
       <Input
