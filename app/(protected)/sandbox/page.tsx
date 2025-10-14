@@ -1,16 +1,16 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { Stepper } from "@/shared/components/organisms/stepper";
-import LoginForm from "@/features/auth/LoginForm";
 import RegisterForm from "@/features/auth/RegisterForm";
 
+// eslint-disable-next-line react/jsx-key
 export const steps = [<div>hello</div>, <div>greetings</div>, <RegisterForm />];
 
 const page = () => {
   return (
     <div className="w-full h-screen f-center">
-      <div className="w-[500px] h-[300px]">
+      <div className="w-[600px] h-[300px]">
         <Stepper steps={steps}>
           <Stepper.Indicator />
           <Stepper.Content />
