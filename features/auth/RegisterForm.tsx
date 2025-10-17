@@ -10,6 +10,7 @@ import React from "react";
 const RegisterForm = () => {
   const router = useRouter();
   const { addToast } = useToast();
+  
   async function handleSubmit(fd: FormData) {
     const res = await submitAuth(fd);
 

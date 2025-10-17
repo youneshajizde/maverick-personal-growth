@@ -11,24 +11,18 @@ export const submitAuth = async (fd: FormData) => {
     password: fd.get("password"),
   });
 
-  const { data, error } = await safeFetch<AuthT>("/auth/local/register", {
+  const { data } = await safeFetch<AuthT>("/auth/local/register", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body,
   });
 
-  if (error || !data) {
-    return { success: false, message: "Registration failed!" };
-  }
-
-  const authData = (data).data ?? data; 
-
-  if (!authData?.jwt) {
+  if (!data?.jwt) {
     return { success: false, message: "Registration failed!" };
   }
 
   const cookieStore = cookies();
-  (await cookieStore).set("token", authData.jwt, {
+  (await cookieStore).set("token", data.jwt, {
     httpOnly: true,
     secure: true,
     path: "/",
@@ -36,5 +30,5 @@ export const submitAuth = async (fd: FormData) => {
     sameSite: "lax",
   });
 
-  return { success: true, data: authData };
+  return { success: true, data: data };
 };

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { OperatorsT, StrapiResponse } from "../types/global.types";
+import { OperatorsT } from "../types/global.types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -10,7 +10,7 @@ export function cn(...inputs: ClassValue[]) {
 export const safeFetch = async <T>(
   endpoint: string,
   options?: RequestInit
-): Promise<{ data: StrapiResponse<T> | null; error: string | null }> => {
+): Promise<{ data: T | null; error: string | null }> => {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}${endpoint}`,
@@ -31,7 +31,7 @@ export const safeFetch = async <T>(
     }
     const json = await res.json();
     console.log(json);
-    return { data: json as StrapiResponse<T>, error: null };
+    return { data: json as T, error: null };
 
     // const data : T = await res.json()
 

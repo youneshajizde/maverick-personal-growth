@@ -1,10 +1,10 @@
 import { paramBuilder, safeFetch } from "@/shared/utils/functions";
 import { ProductT } from "../types/products.types";
-import { queryParamsT } from "@/shared/types/global.types";
+import { ContentArch, queryParamsT } from "@/shared/types/global.types";
 import { CoachT } from "@/features/coaches/types/coaches.types";
 
 export const getProducts = async (filters: queryParamsT) => {
-  return safeFetch<ProductT[]>(
+  return safeFetch<ContentArch<ProductT[]>>(
     `/products${paramBuilder(filters)}&populate=category`
   );
 };

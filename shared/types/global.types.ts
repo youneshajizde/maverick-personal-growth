@@ -13,7 +13,7 @@ export type OperatorsT = "$eq" | "$in" | "$contains" | "$gt" | "$lt";
 
 export type FilterComponentT = "select" | "multiselect" | "radio";
 
-export type StrapiResponse<T> = {
+export type ContentArch<T> = {
   data: T;
   meta: {
     pagination?: {
